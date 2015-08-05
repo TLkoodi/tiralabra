@@ -13,7 +13,7 @@ public class Koodinpurkaja {
        salajuttu = new Salakoodi();
        salajuttu.lisaaTeksti("aaac");
       Analysoija analysoija = new Analysoija();
-      analysoija.analysoiFrekvenssi("aaac");
+      analysoija.analysoiFrekvenssi(salajuttu.lueTeksti());
     }
     
 }
