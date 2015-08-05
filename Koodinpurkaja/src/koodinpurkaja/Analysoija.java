@@ -17,16 +17,15 @@ public class Analysoija {
             Frekvenssiolio olio = kirjaimet.get(c);
             frekvenssit.add(olio);
         }
-        System.out.println(frekvenssit.poll().getKoodi());
         
         return frekvenssit;
     }
     
-    public static void main(String[] args) {
-        Analysoija analyysi = new Analysoija();
-        analyysi.analysoiFrekvenssi("kissaPPPPPP-----------");
-        
-    }
+//    public static void main(String[] args) {
+//        Analysoija analyysi = new Analysoija();
+//        System.out.println(analyysi.analysoiFrekvenssi("sdsdldkPPPPPPPPPPPPPPPPPPPPPPsldklk").poll().getKoodi());
+//        
+//    }
     
     /**
     *Metodi laskee sille syötteenä annetusta Stringistä eri merkit.

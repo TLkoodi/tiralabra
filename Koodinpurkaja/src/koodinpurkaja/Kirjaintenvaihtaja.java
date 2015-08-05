@@ -6,16 +6,16 @@ import java.util.TreeMap;
  *
  * @author Tony
  */
-public class Salakoodi {
+public class Kirjaintenvaihtaja {
 
     private String teksti;
     private TreeMap<String,String> korvaukset = new TreeMap<String, String>();
     
-    public void lisaaTeksti(String lisattava){
+    public void setTeksti(String lisattava){
         teksti = lisattava;
     }
     
-    public String lueTeksti(){
+    public String getTeksti(){
         return teksti;
     }
     

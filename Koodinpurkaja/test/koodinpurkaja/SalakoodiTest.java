@@ -44,9 +44,9 @@ public class SalakoodiTest {
     public void testLisaaTeksti() {
         System.out.println("lisaaTeksti");
         String lisattava = "justjust";
-        Salakoodi instance = new Salakoodi();
-        instance.lisaaTeksti(lisattava);
-        String teksti = instance.lueTeksti();
+        Kirjaintenvaihtaja instance = new Kirjaintenvaihtaja();
+        instance.setTeksti(lisattava);
+        String teksti = instance.getTeksti();
         // TODO review the generated test code and remove the default call to fail.
         assertEquals("justjust", teksti);
     }
@@ -57,86 +57,14 @@ public class SalakoodiTest {
     @Test
     public void testLueTeksti() {
         System.out.println("lueTeksti");
-        Salakoodi instance = new Salakoodi();
+        Kirjaintenvaihtaja instance = new Kirjaintenvaihtaja();
         String lisataan = "juupajuu";
-        instance.lisaaTeksti(lisataan);
-        String result = instance.lueTeksti();
+        instance.setTeksti(lisataan);
+        String result = instance.getTeksti();
         // TODO review the generated test code and remove the default call to fail.
         assertEquals("juupajuu", result);
     }
 
-    /**
-     * Test of korvaa method, of class Salakoodi.
-     */
-    @Test
-    public void testKorvaa() {
-        System.out.println("korvaaUseampiKirjain");
-        String korvattava = "a";
-        String korvaaja = "b";
-        Salakoodi instance = new Salakoodi();
-        instance.lisaaTeksti("aca");
-        instance.korvaa(korvattava, korvaaja);
-        String vastaus = instance.luePurettuKoodi();
-        assertEquals("bcb", vastaus);
-    }
-    
-   @Test
-    public void testKorvaaUseampiKirjain() {
-        System.out.println("korvaa");
-        Salakoodi instance = new Salakoodi();
-        instance.lisaaTeksti("loka");
-        String korvattava = "l";
-        String korvaaja = "r";
-        instance.korvaa(korvattava, korvaaja);
-        korvattava = "o";
-        korvaaja = "o";
-        instance.korvaa(korvattava, korvaaja);
-        korvattava = "k";
-        korvaaja = "c";
-        instance.korvaa(korvattava, korvaaja);
-        korvattava = "a";
-        korvaaja = "k";
-        instance.korvaa(korvattava, korvaaja);
-        
-        String vastaus = instance.luePurettuKoodi();
-        assertEquals("rock", vastaus);
-    }
-    
-    @Test
-    public void testKorvaaMuttaJataValilyonnitRauhaan() {
-        System.out.println("korvaaJaJätäVälilyönnitRauhaan");
-        Salakoodi instance = new Salakoodi();
-        instance.lisaaTeksti("loka loka loka");
-        String korvattava = "l";
-        String korvaaja = "r";
-        instance.korvaa(korvattava, korvaaja);
-        korvattava = "o";
-        korvaaja = "o";
-        instance.korvaa(korvattava, korvaaja);
-        korvattava = "k";
-        korvaaja = "c";
-        instance.korvaa(korvattava, korvaaja);
-        korvattava = "a";
-        korvaaja = "k";
-        instance.korvaa(korvattava, korvaaja);
-        
-        String vastaus = instance.luePurettuKoodi();
-        assertEquals("rock rock rock", vastaus);
-    }
 
-    /**
-     * Test of luePurettuKoodi method, of class Salakoodi.
-     */
-    @Test
-    public void testLuePurettuKoodi() {
-        System.out.println("luePurettuKoodi");
-        String korvattava = "a";
-        String korvaaja = "b";
-        Salakoodi instance = new Salakoodi();
-        instance.lisaaTeksti("aca");
-        instance.korvaa(korvattava, korvaaja);
-        String vastaus = instance.luePurettuKoodi();
-        assertEquals("bcb", vastaus);
-    }
     
 }

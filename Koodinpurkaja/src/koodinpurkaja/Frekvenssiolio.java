@@ -7,7 +7,7 @@ package koodinpurkaja;
  */
 public class Frekvenssiolio implements Comparable<Frekvenssiolio>{
 
-    private char koodi;
+    private Character koodi;
     private int maara;
     
     public Frekvenssiolio(char koodi) {
@@ -15,7 +15,7 @@ public class Frekvenssiolio implements Comparable<Frekvenssiolio>{
         this.maara = 0;
     }
     
-    public char getKoodi(){
+    public Character getKoodi(){
         return koodi;
     }
     

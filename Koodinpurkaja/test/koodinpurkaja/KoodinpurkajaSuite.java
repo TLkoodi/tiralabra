@@ -17,7 +17,7 @@ import org.junit.runners.Suite;
  * @author Tony
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({AnalysoijaTest.class, SalakoodiTest.class, FrekvenssitiedotTest.class, KoodinKaantajaTest.class, FrekvenssiolioTest.class, KoodinpurkajaTest.class})
+@Suite.SuiteClasses({AnalysoijaTest.class, FrekvenssitiedotTest.class, KoodinKaantajaTest.class, KirjaintenvaihtajaTest.class, FrekvenssiolioTest.class, KoodinpurkajaTest.class})
 public class KoodinpurkajaSuite {
 
     @BeforeClass

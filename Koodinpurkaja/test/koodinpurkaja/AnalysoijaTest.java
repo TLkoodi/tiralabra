@@ -48,9 +48,8 @@ public class AnalysoijaTest {
         String teksti = "sdsdldkPPPPPPPPPPPPPPPPPPPPPPsldklk";
         Analysoija instance = new Analysoija();
         PriorityQueue<Frekvenssiolio> result = instance.analysoiFrekvenssi(teksti);
- //       System.out.println(result.poll().getKoodi());
-        assertEquals('P', result.poll().getKoodi());
-        // TODO review the generated test code and remove the default call to fail.
+        Character kirjain = 'P';
+        assertEquals(kirjain, result.poll().getKoodi());
     }
 
     /**
@@ -65,6 +64,21 @@ public class AnalysoijaTest {
         HashMap<Character, Frekvenssiolio> result = instance.laskeKirjaimet(teksti);
         int i = 4;
         assertEquals(4, result.size());
+    }
+
+    /**
+     * Test of laskeKirjaimet method, of class Analysoija.
+     */
+    @Test
+    public void testLaskeKirjaimet() {
+        System.out.println("laskeKirjaimet");
+        String teksti = "";
+        Analysoija instance = new Analysoija();
+        HashMap<Character, Frekvenssiolio> expResult = null;
+        HashMap<Character, Frekvenssiolio> result = instance.laskeKirjaimet(teksti);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
     
 }

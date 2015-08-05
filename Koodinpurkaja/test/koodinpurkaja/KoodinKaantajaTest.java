@@ -44,9 +44,9 @@ public class KoodinKaantajaTest {
     public void testKaanna() {
         System.out.println("kaanna");
         KoodinKaantaja instance = new KoodinKaantaja();
-        instance.kaanna();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String kaannos = instance.kaanna("lol");
+        assertEquals("ete", kaannos);
+        
     }
     
 }
