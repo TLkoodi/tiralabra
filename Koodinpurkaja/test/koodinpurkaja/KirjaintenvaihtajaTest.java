@@ -43,11 +43,11 @@ public class KirjaintenvaihtajaTest {
     @Test
     public void testSetTeksti() {
         System.out.println("setTeksti");
-        String lisattava = "";
         Kirjaintenvaihtaja instance = new Kirjaintenvaihtaja();
-        instance.setTeksti(lisattava);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.setTeksti("lol");
+        String expResult = "lol";
+        String result = instance.getTeksti();
+        assertEquals(expResult, result);
     }
 
     /**
@@ -57,11 +57,10 @@ public class KirjaintenvaihtajaTest {
     public void testGetTeksti() {
         System.out.println("getTeksti");
         Kirjaintenvaihtaja instance = new Kirjaintenvaihtaja();
-        String expResult = "";
+        instance.setTeksti("lol");
+        String expResult = "lol";
         String result = instance.getTeksti();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
  /**

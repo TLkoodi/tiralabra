@@ -2,11 +2,19 @@ package koodinpurkaja;
 
 import java.util.HashMap;
 import java.util.PriorityQueue;
-import java.util.TreeMap;
-import java.util.TreeSet;
 
+/**
+ *
+ * @author Tony
+ */
 public class Analysoija {
 
+    /**
+     * Luokka luo priorisoidun jonon, jonne luo frekvenssiolioita laskeKirjaimet-metodin laskujen perusteella.
+     * 
+     * @param teksti Teksti, joka halutaan analysoitavan kunkin merkin perusteella.
+     * @return Priorisoitu jono, jonka sisältönä on Frekvenssiolio (jossa on tieto merkistä ja sen lukumäärästä).
+     */
     public PriorityQueue<Frekvenssiolio> analysoiFrekvenssi(String teksti) {
          
         PriorityQueue<Frekvenssiolio> frekvenssit = new PriorityQueue<Frekvenssiolio>();
@@ -33,6 +41,8 @@ public class Analysoija {
     *Frekvenssiolio lisätään HashMappiin, jonka avaimena toimii kyseinen merkki. 
     * Tällöin frekvenssiolio voidaan kätevästi hakea merkin perusteella.
     * 
+     * @param teksti
+     * @return 
     */
     
     public HashMap<Character, Frekvenssiolio> laskeKirjaimet(String teksti){

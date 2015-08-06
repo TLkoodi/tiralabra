@@ -75,10 +75,8 @@ public class AnalysoijaTest {
         String teksti = "";
         Analysoija instance = new Analysoija();
         HashMap<Character, Frekvenssiolio> expResult = null;
-        HashMap<Character, Frekvenssiolio> result = instance.laskeKirjaimet(teksti);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        HashMap<Character, Frekvenssiolio> result = instance.laskeKirjaimet("lkdslkfldkfdlfkMMMMMMMdffsdw");
+        assertEquals(7, result.get('M').getMaara());
     }
     
 }

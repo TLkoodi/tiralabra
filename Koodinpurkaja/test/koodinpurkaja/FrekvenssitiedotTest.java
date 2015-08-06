@@ -43,27 +43,13 @@ public class FrekvenssitiedotTest {
      * Test of haeEnglanti method, of class Frekvenssitiedot.
      */
     @Test
-    public void testHaeEnglantiTuleekoKirjainEEnsin() {
+    public void testHaeEnglanti() {
         System.out.println("haeEnglanti");
         Frekvenssitiedot instance = new Frekvenssitiedot();
         
         LinkedList result = instance.haeEnglanti();
         result.peek();
         assertEquals('e', result.poll());
-    }
-
-    /**
-     * Test of haeEnglanti method, of class Frekvenssitiedot.
-     */
-    @Test
-    public void testHaeEnglanti() {
-        System.out.println("haeEnglanti");
-        Frekvenssitiedot instance = new Frekvenssitiedot();
-        LinkedList expResult = null;
-        LinkedList result = instance.haeEnglanti();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

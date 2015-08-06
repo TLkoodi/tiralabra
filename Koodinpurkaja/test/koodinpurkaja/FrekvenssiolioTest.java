@@ -31,6 +31,7 @@ public class FrekvenssiolioTest {
     
     @Before
     public void setUp() {
+         
     }
     
     @After
@@ -43,12 +44,10 @@ public class FrekvenssiolioTest {
     @Test
     public void testGetKoodi() {
         System.out.println("getKoodi");
-        Frekvenssiolio instance = null;
         String expResult = "";
+        Frekvenssiolio instance = new Frekvenssiolio('T');
         char result = instance.getKoodi();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals('T', result);
     }
 
     /**
@@ -57,10 +56,10 @@ public class FrekvenssiolioTest {
     @Test
     public void testKasvata() {
         System.out.println("kasvata");
-        Frekvenssiolio instance = null;
+        Frekvenssiolio instance = new Frekvenssiolio('T');
         instance.kasvata();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.kasvata();
+        assertEquals(2, instance.getMaara());
     }
 
     /**
@@ -69,12 +68,10 @@ public class FrekvenssiolioTest {
     @Test
     public void testGetMaara() {
         System.out.println("getMaara");
-        Frekvenssiolio instance = null;
+        Frekvenssiolio instance = new Frekvenssiolio('T');
         int expResult = 0;
         int result = instance.getMaara();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(0, result);
     }
 
     /**
@@ -83,13 +80,12 @@ public class FrekvenssiolioTest {
     @Test
     public void testCompareTo() {
         System.out.println("compareTo");
-        Frekvenssiolio o = null;
-        Frekvenssiolio instance = null;
-        int expResult = 0;
+        Frekvenssiolio o = new Frekvenssiolio('O');
+        Frekvenssiolio instance = new Frekvenssiolio('T');
+        o.kasvata();
+        int expResult = 1;
         int result = instance.compareTo(o);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

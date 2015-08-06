@@ -10,6 +10,10 @@ import java.util.Queue;
  */
 public class Frekvenssitiedot {
     
+    /**
+     * Tällä haetaan englannin kielen kirjaimet yleissyysjärjestyksessä.
+     * @return Linkitetty lista merkeistä
+     */
     public LinkedList haeEnglanti(){
      LinkedList<Character> jono = new LinkedList<Character>();
      jono.add('e');
