@@ -43,6 +43,13 @@ public class Frekvenssiolio implements Comparable<Frekvenssiolio>{
         return maara;
     }
     
+    /**
+     *  Luokka toteuttaa tällä metodilla comparable-ehdon. Eli tällä luokkaa voidaan käyttää vertailuun ilmentymiensä kesken.
+     * 
+     * @param o mihin verrataan
+     * @return onko ennen jälkeen vai samanarvoinen
+     */
+    
 
     @Override
     public int compareTo(Frekvenssiolio o) {

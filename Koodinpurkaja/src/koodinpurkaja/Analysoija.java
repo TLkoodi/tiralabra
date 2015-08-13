@@ -29,12 +29,6 @@ public class Analysoija {
         return frekvenssit;
     }
     
-//    public static void main(String[] args) {
-//        Analysoija analyysi = new Analysoija();
-//        System.out.println(analyysi.analysoiFrekvenssi("sdsdldkPPPPPPPPPPPPPPPPPPPPPPsldklk").poll().getKoodi());
-//        
-//    }
-    
     /**
     *Metodi laskee sille syötteenä annetusta Stringistä eri merkit.
     *Merkki lisätään frekvenssiolioon, jonka arvoa kasvatetaan joka kerta kun merkki ilmaantuu uudelleen.

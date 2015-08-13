@@ -5,6 +5,7 @@
  */
 package koodinpurkaja;
 
+import java.util.LinkedList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -44,9 +45,153 @@ public class KoodinKaantajaTest {
     public void testKaanna() {
         System.out.println("kaanna");
         KoodinKaantaja instance = new KoodinKaantaja();
-        String kaannos = instance.kaanna("lol");
+        instance.setKaannettava("lol");
+        String kaannos = instance.kaanna();
         assertEquals("ete", kaannos);
         
+    }
+    
+    @Test
+    public void testKaannaPariKertaaVaihtaenManuaalisestiValissa() {
+        System.out.println("kaanna");
+        KoodinKaantaja instance = new KoodinKaantaja();
+        instance.setKaannettava("lol");
+        String kaannos = "";
+        instance.kaanna();
+        instance.vaihdaKirjain("t", "l");
+        instance.kaanna();
+        instance.vaihdaKirjain("e", "a");
+        kaannos = instance.kaanna();
+        assertEquals("ala", kaannos);
+        
+    }
+    
+    @Test
+    public void testKaannaIlmanAsetettuaTekstia() {
+        System.out.println("kaanna");
+        KoodinKaantaja instance = new KoodinKaantaja();
+        String kaannos = instance.kaanna();
+        assertEquals(null, kaannos);
+        
+    }
+
+    /**
+     * Test of setKaannettava method, of class KoodinKaantaja.
+     */
+    @Test
+    public void testSetKaannettava() {
+        System.out.println("setKaannettava");
+        String teksti = "heh";
+        KoodinKaantaja instance = new KoodinKaantaja();
+        instance.setKaannettava(teksti);
+        assertEquals(teksti, instance.getKaannettava());
+    }
+
+    /**
+     * Test of getKaannettava method, of class KoodinKaantaja.
+     */
+    @Test
+    public void testGetKaannettava() {
+        System.out.println("getKaannettava");
+        String teksti = "heh";
+        KoodinKaantaja instance = new KoodinKaantaja();
+        instance.setKaannettava(teksti);
+        assertEquals(teksti, instance.getKaannettava());
+    }
+
+    /**
+     * Test of pidaKirjain method, of class KoodinKaantaja.
+     */
+    @Test
+    public void testPidaKirjain() {
+        System.out.println("pidaKirjain");
+        String kirjainStringi = "z";
+        KoodinKaantaja instance = new KoodinKaantaja();
+        instance.setKaannettava("lolz");
+        instance.pidaKirjain(kirjainStringi);
+        String expResult = "etez";
+        assertEquals(expResult, instance.kaanna());
+    }
+
+    /**
+     * Test of vaihdaKirjain method, of class KoodinKaantaja.
+     */
+    @Test
+    public void testVaihdaKirjain() {
+        System.out.println("vaihdaKirjain");
+        String vaihdettavaKirjainStringi = "o";
+        String korvaavaKirjainStringi = "z";
+        KoodinKaantaja instance = new KoodinKaantaja();
+        String expResult = "zez";
+        instance.setKaannettava("oho");
+        instance.vaihdaKirjain(vaihdettavaKirjainStringi, korvaavaKirjainStringi);
+        assertEquals(expResult, instance.kaanna());
+    }
+    
+    @Test
+    public void testVaihdaKirjainNiinEttaKorvaajaKirjaimellaEiOleValmiiksiEsiintyvyyttaTekstissa() {
+        String vaihdettavaKirjainStringi = "m";
+        String korvaavaKirjainStringi = "e";
+        KoodinKaantaja instance = new KoodinKaantaja();
+        String expResult = "eee";
+        instance.setKaannettava("mee");
+        instance.vaihdaKirjain(vaihdettavaKirjainStringi, korvaavaKirjainStringi);
+        System.out.println(instance.kaanna());
+        assertEquals(!expResult.equals(instance.kaanna()), true);
+    }
+
+    /**
+     * Test of stringiKirjaimeksi method, of class KoodinKaantaja.
+     */
+    @Test
+    public void testStringiKirjaimeksi() {
+        System.out.println("stringiKirjaimeksi");
+        String kirjainStringi = "K";
+        KoodinKaantaja instance = new KoodinKaantaja();
+        Character expResult = 'K';
+        Character result = instance.stringiKirjaimeksi(kirjainStringi);
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testStringiKirjaimeksiLiianPitkallaStringilla() {
+        System.out.println("stringiKirjaimeksi");
+        String kirjainStringi = "KK";
+        KoodinKaantaja instance = new KoodinKaantaja();
+        Character expResult = null;
+        Character result = instance.stringiKirjaimeksi(kirjainStringi);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of poistaListaltaLukitutKirjaimet method, of class KoodinKaantaja.
+     */
+    @Test
+    public void testPoistaListaltaLukitutKirjaimet() {
+        System.out.println("poistaListaltaLukitutKirjaimet");
+        LinkedList<Character> lista = new LinkedList<Character>();
+        lista.add('B');
+        lista.add('D');
+        lista.add('E');
+        KoodinKaantaja instance = new KoodinKaantaja();
+        instance.pidaKirjain("D");
+        LinkedList<Character> result = instance.poistaListaltaLukitutKirjaimet(lista);
+        assertEquals(false, result.contains('D'));
+    }
+
+    /**
+     * Test of vaihdaKirjainIlmanLukitusta method, of class KoodinKaantaja.
+     */
+    @Test
+    public void testVaihdaKirjainIlmanLukitusta() {
+        System.out.println("vaihdaKirjain");
+        String vaihdettavaKirjainStringi = "o";
+        String korvaavaKirjainStringi = "z";
+        KoodinKaantaja instance = new KoodinKaantaja();
+        String expResult = "zez";
+        instance.setKaannettava("oho");
+        instance.vaihdaKirjain(vaihdettavaKirjainStringi, korvaavaKirjainStringi);
+        assertEquals(expResult, instance.kaanna());
     }
     
 }

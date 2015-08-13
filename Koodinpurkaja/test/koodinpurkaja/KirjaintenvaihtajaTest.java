@@ -69,8 +69,8 @@ public class KirjaintenvaihtajaTest {
     @Test
     public void testKorvaa() {
         System.out.println("korvaaUseampiKirjain");
-        String korvattava = "a";
-        String korvaaja = "b";
+        Character korvattava = 'a';
+        Character korvaaja = 'b';
         Kirjaintenvaihtaja instance = new Kirjaintenvaihtaja();
         instance.setTeksti("aca");
         instance.korvaa(korvattava, korvaaja);
@@ -78,22 +78,24 @@ public class KirjaintenvaihtajaTest {
         assertEquals("bcb", vastaus);
     }
     
+    
+    
    @Test
     public void testKorvaaUseampiKirjain() {
         System.out.println("korvaa");
         Kirjaintenvaihtaja instance = new Kirjaintenvaihtaja();
         instance.setTeksti("loka");
-        String korvattava = "l";
-        String korvaaja = "r";
+        Character korvattava = 'l';
+        Character korvaaja = 'r';
         instance.korvaa(korvattava, korvaaja);
-        korvattava = "o";
-        korvaaja = "o";
+        korvattava = 'o';
+        korvaaja = 'o';
         instance.korvaa(korvattava, korvaaja);
-        korvattava = "k";
-        korvaaja = "c";
+        korvattava = 'k';
+        korvaaja = 'c';
         instance.korvaa(korvattava, korvaaja);
-        korvattava = "a";
-        korvaaja = "k";
+        korvattava = 'a';
+        korvaaja = 'k';
         instance.korvaa(korvattava, korvaaja);
         
         String vastaus = instance.luePurettuKoodi();
@@ -105,17 +107,17 @@ public class KirjaintenvaihtajaTest {
         System.out.println("korvaaJaJätäVälilyönnitRauhaan");
         Kirjaintenvaihtaja instance = new Kirjaintenvaihtaja();
         instance.setTeksti("loka loka loka");
-        String korvattava = "l";
-        String korvaaja = "r";
+        Character korvattava = 'l';
+        Character korvaaja = 'r';
         instance.korvaa(korvattava, korvaaja);
-        korvattava = "o";
-        korvaaja = "o";
+        korvattava = 'o';
+        korvaaja = 'o';
         instance.korvaa(korvattava, korvaaja);
-        korvattava = "k";
-        korvaaja = "c";
+        korvattava = 'k';
+        korvaaja = 'c';
         instance.korvaa(korvattava, korvaaja);
-        korvattava = "a";
-        korvaaja = "k";
+        korvattava = 'a';
+        korvaaja = 'k';
         instance.korvaa(korvattava, korvaaja);
         
         String vastaus = instance.luePurettuKoodi();
@@ -123,17 +125,18 @@ public class KirjaintenvaihtajaTest {
     }
 
     /**
-     * Test of luePurettuKoodi method, of class Salakoodi.
+     * Test of luePurettuKoodi method, of class Kirjaintevaihtaja.
      */
     @Test
     public void testLuePurettuKoodi() {
         System.out.println("luePurettuKoodi");
-        String korvattava = "a";
-        String korvaaja = "b";
+        Character korvattava = 'a';
+        Character korvaaja = 'b';
         Kirjaintenvaihtaja instance = new Kirjaintenvaihtaja();
         instance.setTeksti("aca");
         instance.korvaa(korvattava, korvaaja);
         String vastaus = instance.luePurettuKoodi();
         assertEquals("bcb", vastaus);
     }
+
 }

@@ -5,6 +5,7 @@
  */
 package koodinpurkaja;
 
+import koodinpurkaja.UI.UISuite;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,7 +18,7 @@ import org.junit.runners.Suite;
  * @author Tony
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({AnalysoijaTest.class, FrekvenssitiedotTest.class, KoodinKaantajaTest.class, KirjaintenvaihtajaTest.class, FrekvenssiolioTest.class, KoodinpurkajaTest.class})
+@Suite.SuiteClasses({AnalysoijaTest.class, FrekvenssitiedotTest.class, KoodinKaantajaTest.class, UISuite.class, KirjaintenvaihtajaTest.class, FrekvenssiolioTest.class, TiedostonlukijaTest.class, KoodinpurkajaTest.class})
 public class KoodinpurkajaSuite {
 
     @BeforeClass

@@ -16,9 +16,9 @@ import static org.junit.Assert.*;
  *
  * @author Tony
  */
-public class KoodinpurkajaTest {
+public class TiedostonlukijaTest {
     
-    public KoodinpurkajaTest() {
+    public TiedostonlukijaTest() {
     }
     
     @BeforeClass
@@ -38,12 +38,15 @@ public class KoodinpurkajaTest {
     }
 
     /**
-     * Test of main method, of class Koodinpurkaja.
+     * Test of kokoTiedostoStringiksi method, of class Tiedostonlukija.
      */
     @Test
-    public void testMain() {
-        System.out.println("main");
-        assertEquals(true, true);
+    public void testLueTiedosto() {
+        System.out.println("kokoTiedostoStringiksi");
+        Tiedostonlukija instance = new Tiedostonlukija();
+        String expResult = "testaus 1";
+        String result = instance.lueTiedosto("testi.txt");
+        assertEquals(expResult, result);
     }
     
 }
