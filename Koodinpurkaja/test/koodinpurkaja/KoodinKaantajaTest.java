@@ -6,6 +6,8 @@
 package koodinpurkaja;
 
 import java.util.LinkedList;
+import java.util.PriorityQueue;
+import koodinpurkaja.Tietorakenteet.LinkitettyLista;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -58,9 +60,9 @@ public class KoodinKaantajaTest {
         instance.setKaannettava("lol");
         String kaannos = "";
         instance.kaanna();
-        instance.vaihdaKirjain("t", "l");
+        instance.vaihdaKirjainManuaalisesti("t", "l");
         instance.kaanna();
-        instance.vaihdaKirjain("e", "a");
+        instance.vaihdaKirjainManuaalisesti("e", "a");
         kaannos = instance.kaanna();
         assertEquals("ala", kaannos);
         
@@ -117,15 +119,37 @@ public class KoodinKaantajaTest {
      * Test of vaihdaKirjain method, of class KoodinKaantaja.
      */
     @Test
-    public void testVaihdaKirjain() {
+    public void testVaihdaKirjainManuaalisesti() {
         System.out.println("vaihdaKirjain");
         String vaihdettavaKirjainStringi = "o";
         String korvaavaKirjainStringi = "z";
         KoodinKaantaja instance = new KoodinKaantaja();
         String expResult = "zez";
         instance.setKaannettava("oho");
-        instance.vaihdaKirjain(vaihdettavaKirjainStringi, korvaavaKirjainStringi);
+        instance.vaihdaKirjainManuaalisesti(vaihdettavaKirjainStringi, korvaavaKirjainStringi);
         assertEquals(expResult, instance.kaanna());
+    }
+    
+    @Test
+    public void testiVaihdaKirjainTuleekoBooleanOikein() {
+        System.out.println("vaihdaKirjain");
+        String vaihdettavaKirjainStringi = "o";
+        String korvaavaKirjainStringi = "z";
+        KoodinKaantaja instance = new KoodinKaantaja();
+        instance.setKaannettava("oho");
+        boolean kuittaus = instance.vaihdaKirjainManuaalisesti(vaihdettavaKirjainStringi, korvaavaKirjainStringi);
+        assertEquals(true, kuittaus);
+    }
+    
+    @Test
+    public void testiVaihdaKirjainTuleekoBooleanOikeinFalsena() {
+        System.out.println("vaihdaKirjain");
+        String vaihdettavaKirjainStringi = null;
+        String korvaavaKirjainStringi = "z";
+        KoodinKaantaja instance = new KoodinKaantaja();
+        instance.setKaannettava("oho");
+        boolean kuittaus = instance.vaihdaKirjainManuaalisesti(vaihdettavaKirjainStringi, korvaavaKirjainStringi);
+        assertEquals(false, kuittaus);
     }
     
     @Test
@@ -135,7 +159,7 @@ public class KoodinKaantajaTest {
         KoodinKaantaja instance = new KoodinKaantaja();
         String expResult = "eee";
         instance.setKaannettava("mee");
-        instance.vaihdaKirjain(vaihdettavaKirjainStringi, korvaavaKirjainStringi);
+        instance.vaihdaKirjainManuaalisesti(vaihdettavaKirjainStringi, korvaavaKirjainStringi);
         System.out.println(instance.kaanna());
         assertEquals(!expResult.equals(instance.kaanna()), true);
     }
@@ -169,14 +193,35 @@ public class KoodinKaantajaTest {
     @Test
     public void testPoistaListaltaLukitutKirjaimet() {
         System.out.println("poistaListaltaLukitutKirjaimet");
-        LinkedList<Character> lista = new LinkedList<Character>();
+      //  LinkedList<Character> lista = new LinkedList<Character>();
+        LinkitettyLista lista = new LinkitettyLista();
         lista.add('B');
         lista.add('D');
         lista.add('E');
         KoodinKaantaja instance = new KoodinKaantaja();
         instance.pidaKirjain("D");
-        LinkedList<Character> result = instance.poistaListaltaLukitutKirjaimet(lista);
+        //LinkedList<Character> result = instance.poistaListaltaLukitutKirjaimet(lista);
+        LinkitettyLista result = instance.poistaListaltaLukitutKirjaimet(lista);
         assertEquals(false, result.contains('D'));
+    }
+    
+    /**
+     * Test of poistaListaltaLukitutKirjaimet method, of class KoodinKaantaja.
+     */
+    @Test
+    public void testPoistaListaltaLukitutKirjaimetMuttaSaastaMuut() {
+        System.out.println("poistaListaltaLukitutKirjaimetMuttaSaastaMuut");
+      //  LinkedList<Character> lista = new LinkedList<Character>();
+        LinkitettyLista lista = new LinkitettyLista();
+        lista.add('B');
+        lista.add('D');
+        lista.add('E');
+        KoodinKaantaja instance = new KoodinKaantaja();
+        instance.pidaKirjain("D");
+        //LinkedList<Character> result = instance.poistaListaltaLukitutKirjaimet(lista);
+        LinkitettyLista result = instance.poistaListaltaLukitutKirjaimet(lista);
+        result.poll();
+        assertEquals('E', result.poll());
     }
 
     /**
@@ -190,8 +235,83 @@ public class KoodinKaantajaTest {
         KoodinKaantaja instance = new KoodinKaantaja();
         String expResult = "zez";
         instance.setKaannettava("oho");
-        instance.vaihdaKirjain(vaihdettavaKirjainStringi, korvaavaKirjainStringi);
+        instance.vaihdaKirjainManuaalisesti(vaihdettavaKirjainStringi, korvaavaKirjainStringi);
         assertEquals(expResult, instance.kaanna());
+    }
+
+    /**
+     * Test of vaihdaKayttajanVaihtamatKirjaimet method, of class KoodinKaantaja.
+     */
+    @Test
+    public void testVaihdaKayttajanVaihtamatKirjaimet() {
+        System.out.println("vaihdaKayttajanVaihtamatKirjaimet");
+        Kirjaintenvaihtaja kirjaintenvaihtaja = new Kirjaintenvaihtaja();
+        LinkitettyLista yleisyystiedot = new LinkitettyLista();
+        KoodinKaantaja instance = new KoodinKaantaja();
+        Kirjaintenvaihtaja expResult = null;
+        Kirjaintenvaihtaja result = instance.vaihdaKayttajanVaihtamatKirjaimet(kirjaintenvaihtaja, yleisyystiedot);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of korvaaTekstinYleisimmatKirjaimet method, of class KoodinKaantaja.
+     */
+    @Test
+    public void testKorvaaTekstinYleisimmatKirjaimet() {
+        System.out.println("korvaaTekstinYleisimmatKirjaimet");
+        LinkitettyLista yleisyystiedot = new LinkitettyLista();
+        yleisyystiedot.add('a');
+        yleisyystiedot.add('b');
+        yleisyystiedot.add('c');
+        yleisyystiedot.add('d');
+        Kirjaintenvaihtaja kirjaintenvaihtaja = new Kirjaintenvaihtaja();
+        kirjaintenvaihtaja.setTeksti("kissakassa");
+        PriorityQueue<Frekvenssiolio> tekstinKirjaintiedot = new PriorityQueue<Frekvenssiolio>();
+        Analysoija analysoija = new Analysoija();
+        tekstinKirjaintiedot = analysoija.analysoiFrekvenssi("kissakassa");        
+        KoodinKaantaja instance = new KoodinKaantaja();
+        Kirjaintenvaihtaja result = instance.korvaaTekstinYleisimmatKirjaimet(yleisyystiedot, kirjaintenvaihtaja, tekstinKirjaintiedot);
+        assertEquals("cdaabcbaab", result.luePurettuKoodi());
+    }
+    
+    @Test
+    public void testKorvaaTekstinYleisimmatKirjaimetMuttaAlaKorvaaLukittuja() {
+        System.out.println("korvaaTekstinYleisimmatKirjaimet");
+        LinkitettyLista yleisyystiedot = new LinkitettyLista();
+        yleisyystiedot.add('a');
+        yleisyystiedot.add('b');
+        yleisyystiedot.add('c');
+        yleisyystiedot.add('d');
+        yleisyystiedot.add('e');
+        Kirjaintenvaihtaja kirjaintenvaihtaja = new Kirjaintenvaihtaja();
+        kirjaintenvaihtaja.setTeksti("kissakassa");
+        PriorityQueue<Frekvenssiolio> tekstinKirjaintiedot = new PriorityQueue<Frekvenssiolio>();
+        Analysoija analysoija = new Analysoija();
+        tekstinKirjaintiedot = analysoija.analysoiFrekvenssi("kissakassa");        
+        KoodinKaantaja instance = new KoodinKaantaja();
+        instance.pidaKirjain("a");
+        Kirjaintenvaihtaja result = instance.korvaaTekstinYleisimmatKirjaimet(yleisyystiedot, kirjaintenvaihtaja, tekstinKirjaintiedot);
+        assertEquals("cdbbacabba", result.luePurettuKoodi());
+    }
+    
+    @Test
+    public void testKorvaaTekstinYleisimmatKirjaimetMuttaAlaKorvaaAsetettujaKirjainvaihtoja() {
+        System.out.println("korvaaTekstinYleisimmatKirjaimet");
+        LinkitettyLista yleisyystiedot = new LinkitettyLista();
+        yleisyystiedot.add('a');
+        yleisyystiedot.add('b');
+        yleisyystiedot.add('c');
+        yleisyystiedot.add('d');
+        yleisyystiedot.add('e');
+        Kirjaintenvaihtaja kirjaintenvaihtaja = new Kirjaintenvaihtaja();
+        kirjaintenvaihtaja.setTeksti("kissakassa");
+        PriorityQueue<Frekvenssiolio> tekstinKirjaintiedot = new PriorityQueue<Frekvenssiolio>();
+        Analysoija analysoija = new Analysoija();
+        tekstinKirjaintiedot = analysoija.analysoiFrekvenssi("kissakassa");        
+        KoodinKaantaja instance = new KoodinKaantaja();
+        instance.vaihdaKirjainIlmanLukitusta("i", "a");
+        Kirjaintenvaihtaja result = instance.korvaaTekstinYleisimmatKirjaimet(yleisyystiedot, kirjaintenvaihtaja, tekstinKirjaintiedot);
+        assertEquals("dabbcdcbbc", result.luePurettuKoodi());
     }
     
 }

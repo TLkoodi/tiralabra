@@ -7,6 +7,7 @@ package koodinpurkaja;
 
 import java.util.HashMap;
 import java.util.PriorityQueue;
+import java.util.TreeMap;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -61,7 +62,7 @@ public class AnalysoijaTest {
         System.out.println("laskeKirjaimet");
         String teksti = "kissa";
         Analysoija instance = new Analysoija();
-        HashMap<Character, Frekvenssiolio> result = instance.laskeKirjaimet(teksti);
+        TreeMap<Character, Frekvenssiolio> result = instance.laskeKirjaimet(teksti);
         int i = 4;
         assertEquals(4, result.size());
     }
@@ -74,8 +75,8 @@ public class AnalysoijaTest {
         System.out.println("laskeKirjaimet");
         String teksti = "";
         Analysoija instance = new Analysoija();
-        HashMap<Character, Frekvenssiolio> expResult = null;
-        HashMap<Character, Frekvenssiolio> result = instance.laskeKirjaimet("lkdslkfldkfdlfkMMMMMMMdffsdw");
+        TreeMap<Character, Frekvenssiolio> expResult = null;
+        TreeMap<Character, Frekvenssiolio> result = instance.laskeKirjaimet("lkdslkfldkfdlfkMMMMMMMdffsdw");
         assertEquals(7, result.get('M').getMaara());
     }
     

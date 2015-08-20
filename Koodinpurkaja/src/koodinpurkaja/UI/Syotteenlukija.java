@@ -88,7 +88,7 @@ public class Syotteenlukija implements Runnable {
         String vaihdettava = lukija.nextLine();
         System.out.println("Anna korvaava kirjain:");
         String korvaaja = lukija.nextLine();
-        boolean onnistuiko = kaantaja.vaihdaKirjain(vaihdettava, korvaaja);
+        boolean onnistuiko = kaantaja.vaihdaKirjainManuaalisesti(vaihdettava, korvaaja);
         if (onnistuiko != true){
             System.out.println("Vaihto ei onnistunut, tarkista syöte");
         }

@@ -3,6 +3,7 @@ package koodinpurkaja;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import koodinpurkaja.Tietorakenteet.LinkitettyLista;
 
 /**
  *
@@ -14,8 +15,9 @@ public class Frekvenssitiedot {
      * Tällä haetaan englannin kielen kirjaimet yleissyysjärjestyksessä.
      * @return Linkitetty lista merkeistä
      */
-    public LinkedList haeEnglanti(){
-     LinkedList<Character> jono = new LinkedList<Character>();
+    public LinkitettyLista haeEnglanti(){
+   //  LinkedList<Character> jono = new LinkedList<Character>();
+     LinkitettyLista jono = new LinkitettyLista();
      jono.add('e');
      jono.add('t');
      jono.add('a');

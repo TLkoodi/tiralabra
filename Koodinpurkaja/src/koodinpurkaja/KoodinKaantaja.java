@@ -6,6 +6,7 @@ import java.util.PriorityQueue;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import koodinpurkaja.Tietorakenteet.LinkitettyLista;
 
 /**
  *
@@ -61,31 +62,73 @@ public class KoodinKaantaja {
             return null;
         }
 
-        LinkedList<Character> yleisyystiedot = new LinkedList<Character>();
-        yleisyystiedot = sanakirja.haeEnglanti();
-
-        Kirjaintenvaihtaja kirjaintenvaihtaja = new Kirjaintenvaihtaja();
-
+        //LinkedList<Character> yleisyystiedot = new LinkedList<Character>();
+        LinkitettyLista yleisyystiedot = sanakirja.haeEnglanti();
+        
+        yleisyystiedot = (LinkitettyLista)poistaListaltaLukitutKirjaimet(yleisyystiedot);
+        
         PriorityQueue<Frekvenssiolio> tekstinKirjaintiedot = analysoija.analysoiFrekvenssi(kaannettava);
-
+        
+        Kirjaintenvaihtaja kirjaintenvaihtaja = new Kirjaintenvaihtaja();
+        
         kirjaintenvaihtaja.setTeksti(kaannettava);
 
-        yleisyystiedot = poistaListaltaLukitutKirjaimet(yleisyystiedot);
-        LinkedList<Character> yleisyystiedotKlooni = (LinkedList<Character>)yleisyystiedot.clone();
-
-        final Set<Map.Entry<Character, Character>> kirjainVaihdot = kirjaintenVaihdot.entrySet();
-        for (Map.Entry<Character, Character> korvaus : kirjainVaihdot) {
-            if (kelpuutetutKirjaimet.contains(korvaus.getValue().toString())) {
-                kirjaintenvaihtaja.korvaa(korvaus.getValue(), yleisyystiedotKlooni.poll());
-            }
-        }
+        kirjaintenvaihtaja = vaihdaKayttajanVaihtamatKirjaimet(kirjaintenvaihtaja, yleisyystiedot);
         
         String valikaannos = kirjaintenvaihtaja.luePurettuKoodi();
+        
         kirjaintenvaihtaja.setTeksti(valikaannos);
+        
+        kirjaintenvaihtaja = korvaaTekstinYleisimmatKirjaimet(yleisyystiedot, kirjaintenvaihtaja, tekstinKirjaintiedot);
 
+        
+        kaannettava = kirjaintenvaihtaja.luePurettuKoodi();
+        kirjaintenVaihdot.clear();
+        return kaannettava;
+    }
+    
+    protected Kirjaintenvaihtaja vaihdaKayttajanVaihtamatKirjaimet(Kirjaintenvaihtaja kirjaintenvaihtaja, LinkitettyLista yleisyystiedot){
+        LinkitettyLista yleisyystiedotKlooni = (LinkitettyLista)yleisyystiedot.clone();
+        
+        final Set<Map.Entry<Character, Character>> kirjainVaihdot = kirjaintenVaihdot.entrySet();
+        
+        for (Map.Entry<Character, Character> korvaus : kirjainVaihdot) {
+            if (kelpuutetutKirjaimet.contains(korvaus.getValue().toString())) {
+//                while (kirjaintenVaihdot.entrySet().contains((Character)yleisyystiedotKlooni.peek())){
+//                    yleisyystiedotKlooni.poll();
+//                }
+                kirjaintenvaihtaja.korvaa(korvaus.getValue(), (Character)yleisyystiedotKlooni.poll());
+      //          kirjaintenvaihtaja.korvaa(korvaus.getKey(), korvaus.getValue());
+            }
+        }
+        return kirjaintenvaihtaja;
+    }
+    
+    /**
+     * Jos lukituslistalla tai kirjaintenvaihtotiedoista löytyy yleisyystietojen seuraava tarjottu kirjain, 
+     * se hylätään ja otetaan seuraava, ja aloitetaan looppi alusta
+     * 
+     * Jos lukitulistala löytyy korvattava kirjain, otetaan seuraava korvattava kirjain käsittelyyn ja aloitetaan looppi alusta
+     * 
+     * Jos kirjaintenvaihdoista löytyy korvattava kirjaimena käsiteltävä kijrain, se korvataan sille asetetulla korvaavuudella.
+     * Ja aloitetaan looppi alusta.
+     * 
+     * Jos korvattava kirjain löytyy "kelpuutetutKirjaimet"-stringistä, se korvataan yleisyystiedot-listan jonon ensimmäisellä,
+     * eli yleisimällä kirjaimella. Looppi alotetaan tämän jälkeen alusta.
+     * 
+     * Jos korvattava kirjain ei löydy "kelpuutetutKirjaimet"-stringistä, otetaan seuraava kirjain käsittelyyt ja aloitetaan
+     * looppi alusta.
+     * 
+     * @param yleisyystiedot Kielen (esim. englanti) kirjaimet yleisyysjärjestyksessä.
+     * @param kirjaintenvaihtaja Luokka joka hoitaa varsinaisen kirjainten vaihdon sille annettujen ohjeiden perusteella
+     * @param tekstinKirjaintiedot Tekstin merkit yleisyysjärjestyksessä.
+     * @return Kirjaintenvaihtaja, jotta voidaan jatkaa sille komentojen antamista.
+     */
+    
+    protected Kirjaintenvaihtaja korvaaTekstinYleisimmatKirjaimet(LinkitettyLista yleisyystiedot, Kirjaintenvaihtaja kirjaintenvaihtaja, PriorityQueue<Frekvenssiolio> tekstinKirjaintiedot){
         while (!yleisyystiedot.isEmpty() && !tekstinKirjaintiedot.isEmpty()) {
             Character korvattava = tekstinKirjaintiedot.peek().getKoodi();
-            Character korvaaja = yleisyystiedot.peek();
+            Character korvaaja = (Character)yleisyystiedot.peek();
 
             if (lukituslista.contains(korvaaja) || kirjaintenVaihdot.containsValue(korvaaja)) {
                 yleisyystiedot.poll();
@@ -98,16 +141,14 @@ public class KoodinKaantaja {
                 tekstinKirjaintiedot.poll();
 
             } else if (kelpuutetutKirjaimet.contains(korvattava.toString())) {
-                kirjaintenvaihtaja.korvaa(korvattava, yleisyystiedot.poll());
+                kirjaintenvaihtaja.korvaa(korvattava, (Character)yleisyystiedot.poll());
                 tekstinKirjaintiedot.poll();
 
             } else {
                 tekstinKirjaintiedot.poll();
             }
         }
-        kaannettava = kirjaintenvaihtaja.luePurettuKoodi();
-        kirjaintenVaihdot.clear();
-        return kaannettava;
+        return kirjaintenvaihtaja;
     }
     
     /**
@@ -118,12 +159,13 @@ public class KoodinKaantaja {
      * @return lista josta on poiistettu lukituslista-muuttujan merkit
      */
 
-    public LinkedList<Character> poistaListaltaLukitutKirjaimet(LinkedList<Character> lista) {
-        LinkedList<Character> uusiLista = new LinkedList<Character>();
+    public LinkitettyLista poistaListaltaLukitutKirjaimet(LinkitettyLista lista) {
+    //    LinkedList<Character> uusiLista = new LinkedList<Character>();
+        LinkitettyLista uusiLista = new LinkitettyLista();
         while (!lista.isEmpty()) {
-            Character kirjain = lista.poll();
+            Character kirjain = (Character)lista.poll();
             if (!lukituslista.contains(kirjain)) {
-                uusiLista.add(kirjain);
+                uusiLista.add((Character)kirjain);
             }
         }
         return uusiLista;
@@ -156,7 +198,7 @@ public class KoodinKaantaja {
      * @return totuusarvo onnistuiko kirjaimen vaihtaminen
      */
 
-    public boolean vaihdaKirjain(String vaihdettavaKirjainStringi, String korvaavaKirjainStringi) {
+    public boolean vaihdaKirjainManuaalisesti(String vaihdettavaKirjainStringi, String korvaavaKirjainStringi) {
         Character vaihdettavaKirjain = stringiKirjaimeksi(vaihdettavaKirjainStringi);
         Character korvaavaKirjain = stringiKirjaimeksi(korvaavaKirjainStringi);
         if (vaihdettavaKirjain != null && korvaavaKirjain != null) {
@@ -193,7 +235,12 @@ public class KoodinKaantaja {
      */
 
     protected Character stringiKirjaimeksi(String kirjainStringi) {
+        if (kirjainStringi == null){
+            return null;
+        }
+        
         Character kirjain = null;
+        
         if (kirjainStringi.length() == 1) {
             char[] kirjaimet = kirjainStringi.toCharArray();
             kirjain = kirjaimet[0];

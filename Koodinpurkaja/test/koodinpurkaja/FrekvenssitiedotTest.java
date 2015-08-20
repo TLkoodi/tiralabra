@@ -7,6 +7,7 @@ package koodinpurkaja;
 
 import java.util.LinkedList;
 import java.util.PriorityQueue;
+import koodinpurkaja.Tietorakenteet.LinkitettyLista;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -47,7 +48,8 @@ public class FrekvenssitiedotTest {
         System.out.println("haeEnglanti");
         Frekvenssitiedot instance = new Frekvenssitiedot();
         
-        LinkedList result = instance.haeEnglanti();
+   //     LinkedList result = instance.haeEnglanti();
+        LinkitettyLista result = instance.haeEnglanti();
         result.peek();
         assertEquals('e', result.poll());
     }

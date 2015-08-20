@@ -3,10 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package koodinpurkaja;
+package koodinpurkaja.UI;
 
-import koodinpurkaja.Tietorakenteet.TietorakenteetSuite;
-import koodinpurkaja.UI.UISuite;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -19,8 +17,8 @@ import org.junit.runners.Suite;
  * @author Tony
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({AnalysoijaTest.class, FrekvenssitiedotTest.class, KoodinKaantajaTest.class, UISuite.class, TietorakenteetSuite.class, KirjaintenvaihtajaTest.class, FrekvenssiolioTest.class, TiedostonlukijaTest.class, KoodinpurkajaTest.class})
-public class KoodinpurkajaSuite {
+@Suite.SuiteClasses({})
+public class UISuite {
 
     @BeforeClass
     public static void setUpClass() throws Exception {

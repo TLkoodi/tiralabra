@@ -2,6 +2,7 @@ package koodinpurkaja;
 
 import java.util.HashMap;
 import java.util.PriorityQueue;
+import java.util.TreeMap;
 
 /**
  *
@@ -19,7 +20,7 @@ public class Analysoija {
          
         PriorityQueue<Frekvenssiolio> frekvenssit = new PriorityQueue<Frekvenssiolio>();
         
-        HashMap<Character, Frekvenssiolio> kirjaimet = new HashMap<Character, Frekvenssiolio>();
+        TreeMap<Character, Frekvenssiolio> kirjaimet = new TreeMap<Character, Frekvenssiolio>();
         kirjaimet = laskeKirjaimet(teksti);
         for (char c : kirjaimet.keySet()){
             Frekvenssiolio olio = kirjaimet.get(c);
@@ -39,8 +40,8 @@ public class Analysoija {
      * @return 
     */
     
-    public HashMap<Character, Frekvenssiolio> laskeKirjaimet(String teksti){
-        HashMap<Character, Frekvenssiolio> kirjaimet = new HashMap<Character, Frekvenssiolio>();
+    public TreeMap<Character, Frekvenssiolio> laskeKirjaimet(String teksti){
+        TreeMap<Character, Frekvenssiolio> kirjaimet = new TreeMap<Character, Frekvenssiolio>();
         
         for (int i = 0; teksti.length() > i; i++) {
         char[] merkkitaulukko = null;
