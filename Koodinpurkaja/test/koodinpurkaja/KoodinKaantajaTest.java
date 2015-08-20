@@ -241,20 +241,6 @@ public class KoodinKaantajaTest {
     }
 
     /**
-     * Test of vaihdaKayttajanVaihtamatKirjaimet method, of class KoodinKaantaja.
-     */
-    @Test
-    public void testVaihdaKayttajanMaarittelematKirjaimetNiinEtteiTuleTuplia() {
-        System.out.println("vaihdaKayttajanVaihtamatKirjaimet");
-        Kirjaintenvaihtaja kirjaintenvaihtaja = new Kirjaintenvaihtaja();
-        LinkitettyLista yleisyystiedot = new LinkitettyLista();
-        KoodinKaantaja instance = new KoodinKaantaja();
-        Kirjaintenvaihtaja expResult = null;
-        Kirjaintenvaihtaja result = instance.vaihdaKayttajanMaarittelematKirjaimetNiinEtteiTuleTuplia(kirjaintenvaihtaja, yleisyystiedot);
-        assertEquals(expResult, result);
-    }
-
-    /**
      * Test of korvaaTekstinYleisimmatKirjaimet method, of class KoodinKaantaja.
      */
     @Test

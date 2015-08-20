@@ -180,20 +180,5 @@ public class LinkitettyListaTest {
         LinkitettyLista klooni = instance.clone();
         assertEquals(false, instance.isEmpty());
     }
-
-    /**
-     * Test of contains method, of class LinkitettyLista.
-     */
-    @Test
-    public void testContains() {
-        System.out.println("contains");
-        Object tieto = null;
-        LinkitettyLista instance = new LinkitettyLista();
-        boolean expResult = false;
-        boolean result = instance.contains(tieto);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
     
 }
