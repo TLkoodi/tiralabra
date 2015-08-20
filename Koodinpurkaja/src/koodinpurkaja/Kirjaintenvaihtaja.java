@@ -1,6 +1,5 @@
 package koodinpurkaja;
 
-import java.util.HashMap;
 import java.util.TreeMap;
 
 /**

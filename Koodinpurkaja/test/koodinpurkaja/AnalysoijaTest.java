@@ -5,6 +5,7 @@
  */
 package koodinpurkaja;
 
+import koodinpurkaja.Tietorakenteet.Frekvenssiolio;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 import java.util.TreeMap;

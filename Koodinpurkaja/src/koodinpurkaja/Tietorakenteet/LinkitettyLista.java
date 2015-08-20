@@ -4,14 +4,24 @@ package koodinpurkaja.Tietorakenteet;
  *
  * @author Tony
  */
-public class LinkitettyLista implements Cloneable{
+public class LinkitettyLista {
 
     private Solmu aloitusSolmu;
 
+    /**
+     * Konstruktori
+     */
+    
     public LinkitettyLista() {
         aloitusSolmu = null;
 
     }
+    
+    /**
+     * Lisätään listan viimeisen solmun perään uusi solmu. Jos aloitussolmua ei ole, luodaan ensimmäinen solmu.
+     * 
+     * @param tieto luotavaan solmuun lisättävä tieto 
+     */
 
     public void add(Object tieto) {
         if (aloitusSolmu != null) {
@@ -29,6 +39,13 @@ public class LinkitettyLista implements Cloneable{
             aloitusSolmu = new Solmu(tieto);
         }
     }
+    
+    /**
+     * Haetaan listan ensimmäinsen solmun sisältö ja palautetaan se. Poistetaan ensimmäinen solmu, ja seuraava listassa
+     * ottaa ensimmäisen paikan.
+     * 
+     * @return ensimmäisessä solmuss ollut tieto palautetaan Object-muodossa
+     */
 
     public Object poll() {
         if (aloitusSolmu == null) {
@@ -38,6 +55,11 @@ public class LinkitettyLista implements Cloneable{
         aloitusSolmu = aloitusSolmu.getNextSolmu();
         return tieto;
     }
+    
+    /**
+     * Haetaan listan ensimmäisen solmun sisältämä tieto object-muodossa
+     * @return ensimmäisen solmun sisältämä tieto object-muodossa
+     */
 
     public Object peek() {
         if (aloitusSolmu == null) {
@@ -46,6 +68,11 @@ public class LinkitettyLista implements Cloneable{
         return aloitusSolmu.getTieto();
     }
 
+    /**
+     * Kertoo onko LinkitettyLista tyhje, eli onko sillä solmuja.
+     * @return totuusarvo true / false
+     */
+    
     public boolean isEmpty() {
         if (aloitusSolmu == null) {
             return true;
@@ -53,6 +80,12 @@ public class LinkitettyLista implements Cloneable{
         return false;
     }
 
+    /**
+     * Käydään solmut läpi ja tarkistetaan onko haettava tieto missään solmuista
+     * @param tieto Haettava solmu
+     * @return totuusarvo true / false
+     */
+    
     public boolean contains(Object tieto) {
         if (aloitusSolmu == null) {
             return false;
@@ -67,8 +100,12 @@ public class LinkitettyLista implements Cloneable{
         }
         return false;
     }
+
+    /**
+     * Luo kloonin listasta
+     * @return listan klooni
+     */
     
-    @Override
     public LinkitettyLista clone(){
         LinkitettyLista kopio = new LinkitettyLista();
         if (aloitusSolmu == null) {

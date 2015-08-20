@@ -1,5 +1,5 @@
 
-package koodinpurkaja;
+package koodinpurkaja.Tietorakenteet;
 
 /**
  *

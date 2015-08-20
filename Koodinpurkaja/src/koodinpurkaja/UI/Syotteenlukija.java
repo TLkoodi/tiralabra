@@ -9,7 +9,7 @@ import java.util.Scanner;
 import koodinpurkaja.KoodinKaantaja;
 import koodinpurkaja.Tiedostonlukija;
 
-public class Syotteenlukija implements Runnable {
+public class Syotteenlukija {
 
     private static Scanner lukija = new Scanner(System.in);
     private static KoodinKaantaja kaantaja = new KoodinKaantaja();
@@ -19,7 +19,6 @@ public class Syotteenlukija implements Runnable {
      * Luokka joka ylläpitää ohjelman käyttöliittymää ja neuvoo käyttäjää komennoissa.
      */
     
-    @Override
     public void run() {
         System.out.println("Tervetuloa purkamaan koodia, aloitetaanko? (K/E):");
         String luettu = lukija.nextLine();

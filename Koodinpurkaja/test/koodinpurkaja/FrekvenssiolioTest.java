@@ -5,6 +5,7 @@
  */
 package koodinpurkaja;
 
+import koodinpurkaja.Tietorakenteet.Frekvenssiolio;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

@@ -1,5 +1,6 @@
 package koodinpurkaja;
 
+import koodinpurkaja.Tietorakenteet.Frekvenssiolio;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.PriorityQueue;
@@ -42,16 +43,11 @@ public class KoodinKaantaja {
      * Tämän jälkeen metodi lähtettää Analysoija-luokalle tekstin jonka
      * kirjaimet ja niiden esiintyvyys laksetaan.
      *
-     * Seuraavaksi suoritetaan ennalta määrätyt kirjainten vaihtamiset, jos luokalle on annettu kirjaintenVaihdot-TreeMappiin ohjeet 
-     * mitkä kirjaimet korvataan millä. Kirjaimet vaihdetaan käyttämällä kirjaintenvaihtaja-luokkaa.
-     * 
-     * Sitten metodi systemaattisesti järjestyksessä korvaa alkuperäisen tekstin
-     * kirjaimet yleisyysjärjestyksessä niiltä osin kun kirjaimia ei ole lukittu tai erikseen asettamalla vaihdettu.
-     * Apuna korvaamiseen käytetään kirjaintenvaihtaja-luokkaa. Metodi hyväksyy korvattaviksi merkeiksi vain
-     * merkit jotka on sisällytetty luokan muuttujaan "kelpuutetutKirjaimet".
-     * 
-     * Metodi tekee tällä hetkellä useassa palassa käännöstyön, joten tätä metodia tulen pilkkomaan vielä osiin omikse metodeikseen.
+     * Seuraavaksi suoritetaan ennalta määrätyt kirjainten vaihtamiset metodikutsuilla vaihdaKayttajanMaarittelematKirjaimetNiinEtteiTuleTuplia
+     * ja korvaaTekstinKirjaimet.
      *
+     * Välikäänös tehdään metodikutsujen välissä, koska ensimmäisessä metodissa ei voida korvata oikeita kirjaimia
+     * esiintyvyysjärjestyksessä, sillä niitä tässä vaiheessa tunneta.
      *
      * @param teksti tämä parametri on teksti jonka halutaan analysoitavan ja
      * käännettävän salakielestä todelliseksi kieleksi
@@ -73,13 +69,13 @@ public class KoodinKaantaja {
         
         kirjaintenvaihtaja.setTeksti(kaannettava);
 
-        kirjaintenvaihtaja = vaihdaKayttajanVaihtamatKirjaimet(kirjaintenvaihtaja, yleisyystiedot);
+        kirjaintenvaihtaja = vaihdaKayttajanMaarittelematKirjaimetNiinEtteiTuleTuplia(kirjaintenvaihtaja, yleisyystiedot);
         
         String valikaannos = kirjaintenvaihtaja.luePurettuKoodi();
         
         kirjaintenvaihtaja.setTeksti(valikaannos);
         
-        kirjaintenvaihtaja = korvaaTekstinYleisimmatKirjaimet(yleisyystiedot, kirjaintenvaihtaja, tekstinKirjaintiedot);
+        kirjaintenvaihtaja = korvaaTekstinKirjaimet(yleisyystiedot, kirjaintenvaihtaja, tekstinKirjaintiedot);
 
         
         kaannettava = kirjaintenvaihtaja.luePurettuKoodi();
@@ -87,7 +83,22 @@ public class KoodinKaantaja {
         return kaannettava;
     }
     
-    protected Kirjaintenvaihtaja vaihdaKayttajanVaihtamatKirjaimet(Kirjaintenvaihtaja kirjaintenvaihtaja, LinkitettyLista yleisyystiedot){
+   /**
+    *  Käyttäjä antaa luokalle muilla metodeilla korvauskäskyjä kirjainten välillä. Tämä metodi pitää huolen siitä, että
+    * käyttäjän syöttämä korvaava kirjain ei esiinny valmiiksi tekstissä, eli sen esiintyvyys tekstissä ei lisäänny.
+    * 
+    * Esim. "Aatami osti omenan" jos käyttäjä vaihtaa kirjaimen o -> a, ettei käy niin että ennen koodin purkamista kirjaimet
+    * ovat "aatami asti amenan", jolloin a-kirjaimia olisi enemmän.
+    * 
+    * Sen sijaan a-kirjaimet korvataan yleisyystiedot-kloonin seuraavalla kirjaimella ennen välikäännöstä, jotta eri kirjainten
+    * määrä säilyy vakiona.
+    * 
+    * @param kirjaintenvaihtaja luokka jota käytetään varsinaisiin kirjainten vaihdoksiin
+    * @param yleisyystiedot sisältää tiedot kirjainten esiintyvyydestä tietyssä kielessä
+    * @return palauttaa kirjaintenvaihtajan päivitetyillä tiedoilla
+    */
+    
+    protected Kirjaintenvaihtaja vaihdaKayttajanMaarittelematKirjaimetNiinEtteiTuleTuplia(Kirjaintenvaihtaja kirjaintenvaihtaja, LinkitettyLista yleisyystiedot){
         LinkitettyLista yleisyystiedotKlooni = (LinkitettyLista)yleisyystiedot.clone();
         
         final Set<Map.Entry<Character, Character>> kirjainVaihdot = kirjaintenVaihdot.entrySet();
@@ -105,6 +116,11 @@ public class KoodinKaantaja {
     }
     
     /**
+     * Metodi suorittaa ensin tekstissä käyttäjän määrittelemät kirjainvaihdokset, jonka jälkeen kirjaimet korvataan
+     * esiintymisjärjestyksessä kielen yleisimmillä kirjaimilla.
+     * 
+     * Tarkempi erittely:
+     * 
      * Jos lukituslistalla tai kirjaintenvaihtotiedoista löytyy yleisyystietojen seuraava tarjottu kirjain, 
      * se hylätään ja otetaan seuraava, ja aloitetaan looppi alusta
      * 
@@ -125,7 +141,7 @@ public class KoodinKaantaja {
      * @return Kirjaintenvaihtaja, jotta voidaan jatkaa sille komentojen antamista.
      */
     
-    protected Kirjaintenvaihtaja korvaaTekstinYleisimmatKirjaimet(LinkitettyLista yleisyystiedot, Kirjaintenvaihtaja kirjaintenvaihtaja, PriorityQueue<Frekvenssiolio> tekstinKirjaintiedot){
+    protected Kirjaintenvaihtaja korvaaTekstinKirjaimet(LinkitettyLista yleisyystiedot, Kirjaintenvaihtaja kirjaintenvaihtaja, PriorityQueue<Frekvenssiolio> tekstinKirjaintiedot){
         while (!yleisyystiedot.isEmpty() && !tekstinKirjaintiedot.isEmpty()) {
             Character korvattava = tekstinKirjaintiedot.peek().getKoodi();
             Character korvaaja = (Character)yleisyystiedot.peek();
