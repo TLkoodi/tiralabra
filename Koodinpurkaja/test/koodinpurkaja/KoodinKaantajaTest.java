@@ -9,6 +9,7 @@ import koodinpurkaja.Tietorakenteet.Frekvenssiolio;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import koodinpurkaja.Tietorakenteet.LinkitettyLista;
+import koodinpurkaja.Tietorakenteet.PriorisoituJono;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -253,7 +254,7 @@ public class KoodinKaantajaTest {
         yleisyystiedot.add('d');
         Kirjaintenvaihtaja kirjaintenvaihtaja = new Kirjaintenvaihtaja();
         kirjaintenvaihtaja.setTeksti("kissakassa");
-        PriorityQueue<Frekvenssiolio> tekstinKirjaintiedot = new PriorityQueue<Frekvenssiolio>();
+        PriorisoituJono<Frekvenssiolio> tekstinKirjaintiedot = new PriorisoituJono<Frekvenssiolio>();
         Analysoija analysoija = new Analysoija();
         tekstinKirjaintiedot = analysoija.analysoiFrekvenssi("kissakassa");        
         KoodinKaantaja instance = new KoodinKaantaja();
@@ -272,7 +273,7 @@ public class KoodinKaantajaTest {
         yleisyystiedot.add('e');
         Kirjaintenvaihtaja kirjaintenvaihtaja = new Kirjaintenvaihtaja();
         kirjaintenvaihtaja.setTeksti("kissakassa");
-        PriorityQueue<Frekvenssiolio> tekstinKirjaintiedot = new PriorityQueue<Frekvenssiolio>();
+        PriorisoituJono<Frekvenssiolio> tekstinKirjaintiedot = new PriorisoituJono<Frekvenssiolio>();
         Analysoija analysoija = new Analysoija();
         tekstinKirjaintiedot = analysoija.analysoiFrekvenssi("kissakassa");        
         KoodinKaantaja instance = new KoodinKaantaja();
@@ -292,7 +293,7 @@ public class KoodinKaantajaTest {
         yleisyystiedot.add('e');
         Kirjaintenvaihtaja kirjaintenvaihtaja = new Kirjaintenvaihtaja();
         kirjaintenvaihtaja.setTeksti("kissakassa");
-        PriorityQueue<Frekvenssiolio> tekstinKirjaintiedot = new PriorityQueue<Frekvenssiolio>();
+        PriorisoituJono<Frekvenssiolio> tekstinKirjaintiedot = new PriorisoituJono<Frekvenssiolio>();
         Analysoija analysoija = new Analysoija();
         tekstinKirjaintiedot = analysoija.analysoiFrekvenssi("kissakassa");        
         KoodinKaantaja instance = new KoodinKaantaja();

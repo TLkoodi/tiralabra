@@ -4,7 +4,7 @@ package koodinpurkaja.Tietorakenteet;
  *
  * @author Tony
  */
-public class PriorisoituJono {
+public class PriorisoituJono<T> {
 
     private LinkitettyLista lista;
 
@@ -24,7 +24,7 @@ public class PriorisoituJono {
                 Comparable verrattavaTieto = (Comparable) lista.poll();
                 int vertailu = tieto.compareTo(verrattavaTieto);
 
-                if (vertailu > 0) {
+                if (vertailu < 0) {
                     uusiLista.add(tieto);
                     uusiLista.add(verrattavaTieto);
                     loytyikoOikeaKohta = true;
@@ -46,12 +46,12 @@ public class PriorisoituJono {
         }
     }
 
-    public Object poll() {
-        return lista.poll();
+    public T poll() {
+        return (T)lista.poll();
     }
 
-    public Object peek() {
-        return lista.peek();
+    public T peek() {
+        return (T)lista.peek();
     }
 
     public boolean isEmpty() {

@@ -9,6 +9,7 @@ import koodinpurkaja.Tietorakenteet.Frekvenssiolio;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 import java.util.TreeMap;
+import koodinpurkaja.Tietorakenteet.PriorisoituJono;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -47,9 +48,9 @@ public class AnalysoijaTest {
     @Test
     public void testAnalysoiFrekvenssi() {
         System.out.println("analysoiFrekvenssi");
-        String teksti = "sdsdldkPPPPPPPPPPPPPPPPPPPPPPsldklk";
+        String teksti = "sdsdldkPPPPPPPPPPPPPPPPPPPPPPszldklk";
         Analysoija instance = new Analysoija();
-        PriorityQueue<Frekvenssiolio> result = instance.analysoiFrekvenssi(teksti);
+        PriorisoituJono<Frekvenssiolio> result = instance.analysoiFrekvenssi(teksti);
         Character kirjain = 'P';
         assertEquals(kirjain, result.poll().getKoodi());
     }

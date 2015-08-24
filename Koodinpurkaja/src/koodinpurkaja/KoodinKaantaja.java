@@ -1,13 +1,12 @@
 package koodinpurkaja;
 
 import koodinpurkaja.Tietorakenteet.Frekvenssiolio;
-import java.util.LinkedList;
 import java.util.Map;
-import java.util.PriorityQueue;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import koodinpurkaja.Tietorakenteet.LinkitettyLista;
+import koodinpurkaja.Tietorakenteet.PriorisoituJono;
 
 /**
  *
@@ -57,13 +56,11 @@ public class KoodinKaantaja {
         if (kaannettava == null) {
             return null;
         }
-
-        //LinkedList<Character> yleisyystiedot = new LinkedList<Character>();
         LinkitettyLista yleisyystiedot = sanakirja.haeEnglanti();
         
         yleisyystiedot = (LinkitettyLista)poistaListaltaLukitutKirjaimet(yleisyystiedot);
         
-        PriorityQueue<Frekvenssiolio> tekstinKirjaintiedot = analysoija.analysoiFrekvenssi(kaannettava);
+        PriorisoituJono<Frekvenssiolio> tekstinKirjaintiedot = analysoija.analysoiFrekvenssi(kaannettava);
         
         Kirjaintenvaihtaja kirjaintenvaihtaja = new Kirjaintenvaihtaja();
         
@@ -141,7 +138,7 @@ public class KoodinKaantaja {
      * @return Kirjaintenvaihtaja, jotta voidaan jatkaa sille komentojen antamista.
      */
     
-    protected Kirjaintenvaihtaja korvaaTekstinKirjaimet(LinkitettyLista yleisyystiedot, Kirjaintenvaihtaja kirjaintenvaihtaja, PriorityQueue<Frekvenssiolio> tekstinKirjaintiedot){
+    protected Kirjaintenvaihtaja korvaaTekstinKirjaimet(LinkitettyLista yleisyystiedot, Kirjaintenvaihtaja kirjaintenvaihtaja, PriorisoituJono<Frekvenssiolio> tekstinKirjaintiedot){
         while (!yleisyystiedot.isEmpty() && !tekstinKirjaintiedot.isEmpty()) {
             Character korvattava = tekstinKirjaintiedot.peek().getKoodi();
             Character korvaaja = (Character)yleisyystiedot.peek();
@@ -176,7 +173,6 @@ public class KoodinKaantaja {
      */
 
     public LinkitettyLista poistaListaltaLukitutKirjaimet(LinkitettyLista lista) {
-    //    LinkedList<Character> uusiLista = new LinkedList<Character>();
         LinkitettyLista uusiLista = new LinkitettyLista();
         while (!lista.isEmpty()) {
             Character kirjain = (Character)lista.poll();

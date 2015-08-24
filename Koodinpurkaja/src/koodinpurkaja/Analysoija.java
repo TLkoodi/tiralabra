@@ -1,9 +1,8 @@
 package koodinpurkaja;
 
 import koodinpurkaja.Tietorakenteet.Frekvenssiolio;
-import java.util.HashMap;
-import java.util.PriorityQueue;
 import java.util.TreeMap;
+import koodinpurkaja.Tietorakenteet.PriorisoituJono;
 
 /**
  *
@@ -17,10 +16,8 @@ public class Analysoija {
      * @param teksti Teksti, joka halutaan analysoitavan kunkin merkin perusteella.
      * @return Priorisoitu jono, jonka sisältönä on Frekvenssiolio (jossa on tieto merkistä ja sen lukumäärästä).
      */
-    public PriorityQueue<Frekvenssiolio> analysoiFrekvenssi(String teksti) {
-         
-        PriorityQueue<Frekvenssiolio> frekvenssit = new PriorityQueue<Frekvenssiolio>();
-        
+ public PriorisoituJono<Frekvenssiolio> analysoiFrekvenssi(String teksti){
+     PriorisoituJono<Frekvenssiolio> frekvenssit = new PriorisoituJono<Frekvenssiolio>();
         TreeMap<Character, Frekvenssiolio> kirjaimet = new TreeMap<Character, Frekvenssiolio>();
         kirjaimet = laskeKirjaimet(teksti);
         for (char c : kirjaimet.keySet()){

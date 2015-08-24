@@ -44,12 +44,12 @@ public class PriorisoituJonoTest {
     public void testAdd() {
         System.out.println("add");
         PriorisoituJono instance = new PriorisoituJono();
-        instance.add(1);
+        instance.add(7);
         instance.add(2);
         instance.add(7);
         instance.add(3);
         
-        assertEquals(7, instance.poll());
+        assertEquals(2, instance.poll());
     }
     
     @Test
@@ -94,6 +94,16 @@ public class PriorisoituJonoTest {
         instance.poll();
         instance.poll();
         assertEquals(true, instance.isEmpty());
+    }
+    
+    @Test
+    public void testMeneekoTanneFrekvenssiolioSisaan() {
+        System.out.println("isEmpty");
+        PriorisoituJono<Frekvenssiolio> instance = new PriorisoituJono<Frekvenssiolio>();
+        Frekvenssiolio olio = new Frekvenssiolio('R');
+        instance.add(olio);
+        Character kirjain = 'R';
+        assertEquals(kirjain, instance.poll().getKoodi());
     }
     
 }

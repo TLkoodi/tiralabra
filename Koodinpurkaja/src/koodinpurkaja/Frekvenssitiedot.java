@@ -1,6 +1,5 @@
 package koodinpurkaja;
 
-import java.util.LinkedList;
 import koodinpurkaja.Tietorakenteet.LinkitettyLista;
 
 /**
@@ -14,7 +13,6 @@ public class Frekvenssitiedot {
      * @return Linkitetty lista merkeistä
      */
     public LinkitettyLista haeEnglanti(){
-   //  LinkedList<Character> jono = new LinkedList<Character>();
      LinkitettyLista jono = new LinkitettyLista();
      jono.add('e');
      jono.add('t');
