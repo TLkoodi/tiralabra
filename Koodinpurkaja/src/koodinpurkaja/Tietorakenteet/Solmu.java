@@ -4,7 +4,7 @@ package koodinpurkaja.Tietorakenteet;
  *
  * @author Tony
  */
-public class Solmu {
+public class Solmu<T> {
 
     private Object tieto;
     private Solmu nextSolmu = null;

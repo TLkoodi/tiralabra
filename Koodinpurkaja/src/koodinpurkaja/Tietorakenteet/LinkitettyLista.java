@@ -20,6 +20,8 @@ public class LinkitettyLista {
     /**
      * Lisätään listan viimeisen solmun perään uusi solmu. Jos aloitussolmua ei ole, luodaan ensimmäinen solmu.
      * 
+     * Aikavaativuus O(n)
+     * 
      * @param tieto luotavaan solmuun lisättävä tieto 
      */
 
@@ -83,6 +85,9 @@ public class LinkitettyLista {
     /**
      * Käydään solmut läpi ja tarkistetaan onko haettava tieto missään solmuista
      * @param tieto Haettava solmu
+     * 
+     * O(n) aikainen
+     * 
      * @return totuusarvo true / false
      */
     
