@@ -8,9 +8,19 @@ public class PriorisoituJono<T> {
 
     private LinkitettyLista lista;
 
+    /**
+     * Konstruktori. Apuna käytetään LinkitettyLista-luokkaa
+     */
+    
     public PriorisoituJono() {
         lista = new LinkitettyLista();
     }
+    
+    /**
+     * Lisätään LinkitettyynListaan haluttu tieto. Koska nyt kuitenkin toteutetaan priortisoitu jono, niin tehdään vertailua
+     * Linkitetyn listan arvojen suhteen ja lisätään tieto sille kuuluvaan paikkan jonossa, eikä jonon perään.
+     * @param tieto lisättävä tieto 
+     */
 
     public void add(Comparable tieto) {
         if (lista.isEmpty()) {
@@ -45,14 +55,29 @@ public class PriorisoituJono<T> {
             lista = uusiLista;
         }
     }
+    
+    /**
+     * Poistetaan jono ensimmäinen ja haetaan sen arvo
+     * @return 
+     */
 
     public T poll() {
         return (T)lista.poll();
     }
+    
+    /**
+     * Haetaan jonon ensimmäinen arvo, muttei poisteta sitä jonosta
+     * @return 
+     */
 
     public T peek() {
         return (T)lista.peek();
     }
+    
+    /**
+     * Tarkistetaan onko jono tyhjä.
+     * @return 
+     */
 
     public boolean isEmpty() {
         return lista.isEmpty();

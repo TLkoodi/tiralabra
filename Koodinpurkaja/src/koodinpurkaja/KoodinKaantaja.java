@@ -15,7 +15,7 @@ import koodinpurkaja.Tietorakenteet.PriorisoituJono;
 public class KoodinKaantaja {
 
     private Frekvenssitiedot sanakirja = new Frekvenssitiedot();
-    private String kelpuutetutKirjaimet = "abcdefghijklmnopqrstuvwxyzåäö";
+    private String kelpuutetutKirjaimet = "abcdefghijklmnopqrstuvwxyz";
     private Analysoija analysoija = new Analysoija();
     public TreeSet<Character> lukituslista = new TreeSet<Character>();
     public TreeMap<Character, Character> kirjaintenVaihdot = new TreeMap<Character, Character>();

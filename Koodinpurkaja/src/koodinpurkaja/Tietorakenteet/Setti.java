@@ -1,27 +1,46 @@
 package koodinpurkaja.Tietorakenteet;
-
 /**
  *
  * @author Tony
  */
-public class Setti {
 
-    public Arvopari aloitussolmu = null;
+public class Setti<T>{
+    
     Mappi mappi = new Mappi();
+    
+    /**
+     * Konstruktori. Oletuksena luokalla on mappi, jota se käyttää tietorakenteenaan.
+     */
     
     public Setti() {
     }
+    
+    /**
+     * Lisätään settiin
+     * @param tieto settiin lisättävä tieto
+     */
     
     public void add(Comparable tieto){
         mappi.put(tieto, null);
     }
     
+    /**
+     * Setistä poistaminen
+     * @param poistettava poistettava tieto
+     */
+    
     public void remove(Comparable poistettava){
         mappi.remove(poistettava);
     }
     
-    public boolean contains(Comparable haettavah){
-        return mappi.containsKey(haettavah);
+    /**
+     * Etsitään sisältääkö setti haettavan tiedon
+     * @param haettava haettava tieto
+     * @return totuusarvo kysymykseen "löytyikö?"
+     */
+    
+    public boolean contains(Comparable haettava){
+        return mappi.containsKey(haettava);
         
     }
 

@@ -230,4 +230,74 @@ public class MappiTest {
         assertEquals('3', result.getAvain());
         
     }
+
+    /**
+     * Test of keySet method, of class Mappi.
+     */
+    @Test
+    public void testKeySet() {
+        System.out.println("keySet");
+        Mappi instance = new Mappi();
+        instance.put('A', null);
+        instance.put('C', null);
+        instance.put('X', null);
+        instance.put('V', null);
+        Setti result = instance.keySet();
+        assertEquals(true, result.contains('V'));
+    }
+    
+    @Test
+    public void testEntrySet() {
+        System.out.println("entrySet");
+        Mappi instance = new Mappi();
+        instance.put('A', 'F');
+        instance.put('C', 'E');
+        instance.put('X', 'B');
+        instance.put('V', 'Z');
+        Setti result = instance.entrySet();
+        assertEquals(true, result.contains('B'));
+    }
+
+    /**
+     * Test of lisaaSolmujenAvaimetSettiin method, of class Mappi.
+     */
+    @Test
+    public void testLisaaSolmujenAvaimetSettiin() {
+        System.out.println("lisaaSolmujenAvaimetSettiin");
+        Mappi instance = new Mappi();
+        Arvopari solmu = new Arvopari('X', 'H');
+        Setti setti = new Setti();
+        instance.putValmisArvopariMappiin(solmu);
+        instance.put('A', 'B');
+        instance.put('R', 'B');
+        instance.put('E', 'B');
+        instance.put('S', 'B');
+        instance.put('T', 'B');
+        instance.put('I', 'B');
+        Setti<Comparable> result = instance.lisaaSolmujenAvaimetSettiin(solmu, setti);
+        assertEquals(true, result.contains('S'));
+    }
+
+    /**
+     * Test of isEmpty method, of class Mappi.
+     */
+    @Test
+    public void testIsEmpty() {
+        System.out.println("isEmpty");
+        Mappi instance = new Mappi();
+        boolean expResult = true;
+        boolean result = instance.isEmpty();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testIsEmptyJosTyhjennetty() {
+        System.out.println("isEmpty");
+        Mappi instance = new Mappi();
+        instance.put('A', 'B');
+        boolean expResult = true;
+        instance.remove('A');
+        boolean result = instance.isEmpty();
+        assertEquals(expResult, result);
+    }
 }

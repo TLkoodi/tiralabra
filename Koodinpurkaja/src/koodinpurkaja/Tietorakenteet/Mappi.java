@@ -4,7 +4,7 @@ package koodinpurkaja.Tietorakenteet;
  *
  * @author Tony
  */
-public class Mappi {
+public class Mappi<T,E> {
 
     private Arvopari<Comparable, Comparable> juuri = null;
 
@@ -84,7 +84,6 @@ public class Mappi {
         }
         Arvopari<Comparable, Comparable> kasiteltava = juuri;
         while (kasiteltava != null) {
-            System.out.println(kasiteltava.getAvain());
             int isompiko = kasiteltava.getAvain().compareTo(avain);
             if (isompiko == 0) {
                 return kasiteltava;
@@ -171,5 +170,56 @@ public class Mappi {
             }
         }
         return null;
+    }
+    
+    public Setti keySet(){
+        Setti<Comparable> setti = new Setti<Comparable>();
+        if (juuri == null) {
+            return null;
+        }
+        Arvopari<Comparable, Comparable> kasiteltava = juuri;
+        
+        setti = lisaaSolmujenAvaimetSettiin(kasiteltava, setti);
+        return setti;
+        }
+    
+    protected Setti<Comparable> lisaaSolmujenAvaimetSettiin(Arvopari solmu, Setti setti){
+        if (solmu.getNextVasen() != null){
+        lisaaSolmujenAvaimetSettiin(solmu.getNextVasen(), setti);
+        }
+        if (solmu.getNextOikea() != null){
+        lisaaSolmujenAvaimetSettiin(solmu.getNextOikea(), setti);
+        }
+        setti.add(solmu.getAvain());
+        return setti;
+    }
+    
+    public Setti entrySet(){
+        Setti<Comparable> setti = new Setti<Comparable>();
+        if (juuri == null) {
+            return null;
+        }
+        Arvopari<Comparable, Comparable> kasiteltava = juuri;
+        
+        setti = lisaaSolmujenArvotSettiin(kasiteltava, setti);
+        return setti;
+        }
+    
+    protected Setti<Comparable> lisaaSolmujenArvotSettiin(Arvopari solmu, Setti setti){
+        if (solmu.getNextVasen() != null){
+        lisaaSolmujenArvotSettiin(solmu.getNextVasen(), setti);
+        }
+        if (solmu.getNextOikea() != null){
+        lisaaSolmujenArvotSettiin(solmu.getNextOikea(), setti);
+        }
+        setti.add(solmu.getArvo());
+        return setti;
+    }
+    
+    public boolean isEmpty(){
+        if (juuri == null){
+            return true;
+        }
+        return false;
     }
 }

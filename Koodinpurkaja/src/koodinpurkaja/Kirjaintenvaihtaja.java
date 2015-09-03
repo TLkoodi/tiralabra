@@ -1,6 +1,6 @@
 package koodinpurkaja;
 
-import java.util.TreeMap;
+import koodinpurkaja.Tietorakenteet.Mappi;
 
 /**
  *
@@ -9,8 +9,8 @@ import java.util.TreeMap;
 public class Kirjaintenvaihtaja {
 
     private String teksti;
-    private TreeMap<Character, Character> korvaukset = new TreeMap<Character, Character>();
-    private TreeMap<Character, Character> korvauksetTakaperin = new TreeMap<Character, Character>();   
+    private Mappi<Character, Character> korvaukset = new Mappi<Character, Character>();
+    private Mappi<Character, Character> korvauksetTakaperin = new Mappi<Character, Character>();   
 
     /**
      * Setteri, tällä lisätään teksti joka halutaan kääntää
