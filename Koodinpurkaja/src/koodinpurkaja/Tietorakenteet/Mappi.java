@@ -1,20 +1,36 @@
 package koodinpurkaja.Tietorakenteet;
 
 /**
- *
+ * Tällä tietorakenteella on pyritty korvaamaan TreeMap tietorakenne tarvittavilta osin.
  * @author Tony
  */
 public class Mappi<T, E> {
 
     private Arvopari<Comparable, Comparable> juuri = null;
 
+    /**
+     * Konstruktori
+     */
+    
     public Mappi() {
     }
+    
+    /**
+     * Luodaan avain arvosta ja sillä "avautuvasta" arvosta arvopari-luokan olio, ja lisätään arvopari mappiin.
+     * @param avain avainarvo
+     * @param arvo varsinainen arvo
+     */
 
     public void put(Comparable avain, Comparable arvo) {
         Arvopari<Comparable, Comparable> pari = new Arvopari(avain, arvo);
         putValmisArvopariMappiin(pari);
     }
+    
+    /**
+     * Lisätään arvopari-tyyppinen olio mappiin avaimen perusteella. Mitä suurempi arvo on, sitä enemmän "vasemmalle" puussa
+     * arvopari asettuu.
+     * @param pari lisättävä arvopari
+     */
 
     public void putValmisArvopariMappiin(Arvopari pari) {
         if (pari == null) {
@@ -74,6 +90,12 @@ public class Mappi<T, E> {
 
     }
 
+    /**
+     * Kyselyllä selvitetään sisältääkö mappi kyselyyn sopivaa avainta
+     * @param avain haettava avain
+     * @return true jos avain löytyy, false jos ei löydy
+     */
+    
     public boolean containsKey(Comparable avain) {
         Arvopari<Comparable, Comparable> pari = haeArvopariAvaimenPerusteella(avain);
         if (pari == null) {
@@ -81,6 +103,12 @@ public class Mappi<T, E> {
         }
         return true;
     }
+    
+    /**
+     * Palauttaa arvoparin sille annetun avaimen perusteella
+     * @param avain avain jolla haetaan arvopari
+     * @return arvopari
+     */
 
     public Arvopari haeArvopariAvaimenPerusteella(Comparable avain) {
         if (avain == null || juuri == null) {
@@ -110,6 +138,13 @@ public class Mappi<T, E> {
             remove(pari.getAvain());
         }
     }
+    
+    /**
+     * Poistaa avaimen perusteella haettavan solmun mapista. Lisää avaimen alla olevat solmut uudelleen mappii, jotta myös
+     * ne eivät poistuisi.
+     * @param avain avain jolla poistettava haetaan ja poistetaan
+     * @return true jos poistettiin, false jos mitään ei löytynyt / poistettu
+     */
 
     public boolean remove(Comparable avain) {
         if (juuri == null) {
@@ -146,6 +181,12 @@ public class Mappi<T, E> {
         }
         return false;
     }
+    
+    /**
+     * Ottaa poistettavaan solmuun liitetyt solmut talteen, lisää ne uudelleen mappiin. Tyhjentää poistettavan solmun mapista
+     * muuttamalla sen arvot nulliksi.
+     * @param kasiteltava poistettava solmu
+     */
 
     private void poistaSolmuJaLisaaSenSolmutUuudelleenMappiin(Arvopari kasiteltava) {
         Arvopari vasenSolmu = kasiteltava.getNextVasen();
@@ -187,6 +228,11 @@ public class Mappi<T, E> {
          }
         return null;
     }
+    
+    /**
+     * Palauttaa setti-olion joka sisältää kaikki mapin avaimet
+     * @return Setti-olio
+     */
 
     public Setti keySet() {
         Setti<Comparable> setti = new Setti<Comparable>();
@@ -198,6 +244,13 @@ public class Mappi<T, E> {
         setti = lisaaSolmujenAvaimetSettiin(kasiteltava, setti);
         return setti;
     }
+    
+    /**
+     * Lisää solmujen avaimet settiin. Käytetään rekursiivisesti käsittelemään kaikki puun solmut läpi.
+     * @param solmu Käsittelyssä oleva solmu
+     * @param setti setti mihin avaimet lisätään
+     * @return Setti mihin avain on lisätty
+     */
 
     protected Setti<Comparable> lisaaSolmujenAvaimetSettiin(Arvopari solmu, Setti setti) {
         if (solmu.getNextVasen() != null) {
@@ -209,6 +262,11 @@ public class Mappi<T, E> {
         setti.add(solmu.getAvain());
         return setti;
     }
+    
+    /**
+     * Palauttaa setti-olion joka sisältää kaikki mapin arvot
+     * @return Setti-olio
+     */
 
     public Setti entrySet() {
         Setti<Comparable> setti = new Setti<Comparable>();
@@ -220,6 +278,13 @@ public class Mappi<T, E> {
         setti = lisaaSolmujenArvotSettiin(kasiteltava, setti);
         return setti;
     }
+    
+    /**
+     * Lisää solmujen arvot settiin. Käytetään rekursiivisesti käsittelemään kaikki puun solmut läpi.
+     * @param solmu Käsittelyssä oleva solmu
+     * @param setti setti mihin arvot lisätään
+     * @return Setti mihin arvot on lisätty
+     */
 
     protected Setti<Comparable> lisaaSolmujenArvotSettiin(Arvopari solmu, Setti setti) {
         if (solmu.getNextVasen() != null) {
@@ -231,6 +296,11 @@ public class Mappi<T, E> {
         setti.add(solmu.getArvo());
         return setti;
     }
+    
+    /**
+     * Vastaa kysymykseen onko mapilla aloitussolmua eli juurta. Jos juurta ei ole, ei luokassa ole mitään mitä voisi käsitellä
+     * @return True/False
+     */
 
     public boolean isEmpty() {
         if (juuri == null) {

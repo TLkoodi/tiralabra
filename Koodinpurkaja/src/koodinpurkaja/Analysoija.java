@@ -1,13 +1,12 @@
 package koodinpurkaja;
 
 import koodinpurkaja.Tietorakenteet.Frekvenssiolio;
-import java.util.TreeMap;
 import koodinpurkaja.Tietorakenteet.Mappi;
 import koodinpurkaja.Tietorakenteet.PriorisoituJono;
 import koodinpurkaja.Tietorakenteet.Setti;
 
 /**
- *
+ * Luokkaa käytetään analysoimaan tekstissä esiintyvien merkkein määrät.
  * @author Tony
  */
 public class Analysoija {

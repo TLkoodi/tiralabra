@@ -1,7 +1,7 @@
 package koodinpurkaja.Tietorakenteet;
 
 /**
- *
+ * Solmua käytetään LinkitettyLista-luokan apuna.
  * @author Tony
  */
 public class Solmu<T> {

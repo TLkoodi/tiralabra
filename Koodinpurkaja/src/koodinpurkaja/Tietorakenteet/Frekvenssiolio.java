@@ -2,7 +2,8 @@
 package koodinpurkaja.Tietorakenteet;
 
 /**
- *
+ * Frekvenssiolio on olio joka sisältää kirjaimen ja siihen liiteyn lukuarvon. Lukuarvoa voidaan kasvattaa. Luokkaa käytetään
+ * tallettaessa tietoa siitä kuinka monta kertaa kyseinen merkki esiintyy.
  * @author Tony
  */
 public class Frekvenssiolio implements Comparable<Frekvenssiolio>{

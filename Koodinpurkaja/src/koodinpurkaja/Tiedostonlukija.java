@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- *
+ * Lukee ohjelman käyttämän tekstitiedoston.
  * @author Tony
  */
 public class Tiedostonlukija {

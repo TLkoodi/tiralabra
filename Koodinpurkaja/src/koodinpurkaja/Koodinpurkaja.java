@@ -3,7 +3,7 @@ package koodinpurkaja;
 
 import koodinpurkaja.UI.Syotteenlukija;
 /**
- *
+ * Pääluokka.
  * @author Tony
  */
 public class Koodinpurkaja {

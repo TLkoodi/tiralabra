@@ -2,7 +2,7 @@
 package koodinpurkaja.UI;
 
 /**
- *
+ * Ohjelman hallintaliittymän toteutus.
  * @author Tony
  */
 import java.util.Scanner;

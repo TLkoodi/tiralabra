@@ -2,7 +2,8 @@
 package koodinpurkaja.Tietorakenteet;
 
 /**
- *
+ * Arvopari-luokkaa käytetään tietorakenteena sisältämään Avain-arvon ja siihen liitetyn varsinaisen arvon. Luokan
+ * pääasiallinen käyttötarkoitus on toimia solmutoteutuksen "mappi"-luokkaan.
  * @author Tony
  */
 public class Arvopari<T,E>{

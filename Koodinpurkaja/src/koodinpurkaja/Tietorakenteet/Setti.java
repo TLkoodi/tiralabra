@@ -1,6 +1,7 @@
 package koodinpurkaja.Tietorakenteet;
 /**
- *
+ * Luokalla toteutetaan set-tyyppinen tietorakenne. Tietorakenteen pohjana käytetään Mappi-luokkaa.
+ * Esikuvana toiminut TreeSet ja TreeMap luokat, joissa TreeSet on myöskin toteutettu vahvasti TreeMap-luokan avulla.
  * @author Tony
  */
 
@@ -43,6 +44,12 @@ public class Setti<T>{
         return mappi.containsKey(haettava);
         
     }
+    
+    /**
+     * Hakee setin arvoista seuraavan mappi-luokan palautaAlinSolmuMahdollisimmanVasemmalta()-metodin perusteella.
+     * Tämän jälkeen arvo poistettaan setistä kokonaan ja palautetaan paluuarvona.
+     * @return Comparable-olio, joka tuli palautaAlinSolmuMahdollisimmanVasemmalta()-metodin arvoparin getAvain-kyselyllä.
+     */
     
     public Comparable poll(){
         Arvopari arvopari = mappi.palautaAlinSolmuMahdollisimmanVasemmalta();

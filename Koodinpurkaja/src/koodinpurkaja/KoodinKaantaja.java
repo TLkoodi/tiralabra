@@ -8,7 +8,7 @@ import koodinpurkaja.Tietorakenteet.PriorisoituJono;
 import koodinpurkaja.Tietorakenteet.Setti;
 
 /**
- *
+ * Luokka toimii ohjelman "Pääluokkana" tehden isot komentokutsut ja kokonaisuuden hallinnan tekstin käännöstyössä.
  * @author Tony
  */
 public class KoodinKaantaja {
@@ -30,6 +30,11 @@ public class KoodinKaantaja {
     public void setKaannettava(String teksti) {
         this.kaannettava = teksti;
     }
+    
+    /**
+     * Getteri käännettävälle tekstille
+     * @return  käännettävä teksti
+     */
 
     public String getKaannettava() {
         return kaannettava;

@@ -1,7 +1,7 @@
 package koodinpurkaja.Tietorakenteet;
 
 /**
- *
+ * Korva tietorakenteen "PriorityQueue"
  * @author Tony
  */
 public class PriorisoituJono<T> {

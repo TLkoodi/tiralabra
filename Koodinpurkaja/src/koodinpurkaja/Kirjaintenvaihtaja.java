@@ -3,7 +3,7 @@ package koodinpurkaja;
 import koodinpurkaja.Tietorakenteet.Mappi;
 
 /**
- *
+ * Luokka vaihtaa sille annetun tekstin kirjaimet sille annettujen korvauskäskyjen perusteella.
  * @author Tony
  */
 public class Kirjaintenvaihtaja {

@@ -1,7 +1,7 @@
 package koodinpurkaja.Tietorakenteet;
 
 /**
- *
+ * Korvaa tietorakenteen "LinkedList".
  * @author Tony
  */
 public class LinkitettyLista {
