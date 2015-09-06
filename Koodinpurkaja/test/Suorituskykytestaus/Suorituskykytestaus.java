@@ -43,7 +43,7 @@ public class Suorituskykytestaus {
     public void tearDown() {
     }
     
-    // NÄISTÄ VOI KOMMENTOINNIN POISTAA JOS HALUAA AJAA, AJO KESTÄÄ AIKA KAUAN JOTEN SEN TAKIA POISTETTU.
+    // NÄISTÄ VOI KOMMENTOINNIN POISTAA JOS HALUAA AJAA, AJO KESTÄÄ AIKA KAUAN JOTEN SEN TAKIA KOMMENTOITU POIS.
     
      @Test
     public void testPut100() {

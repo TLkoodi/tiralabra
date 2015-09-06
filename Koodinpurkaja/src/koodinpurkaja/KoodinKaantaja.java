@@ -127,7 +127,6 @@ public class KoodinKaantaja {
                 return kirjaintenvaihtaja;
             }
         }
-        System.out.println("7");
         return kirjaintenvaihtaja;
     }
 
