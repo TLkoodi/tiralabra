@@ -103,6 +103,17 @@ public class SettiTest {
     }
     
     @Test
+    public void testPollNull() {
+        System.out.println("poll");
+        Setti instance = new Setti();
+        instance.add('3');
+        instance.poll();
+        Comparable expResult = null;
+        Comparable result = instance.poll();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
     public void testPollUseampi() {
         System.out.println("poll");
         Setti instance = new Setti();

@@ -4,7 +4,7 @@ package koodinpurkaja.Tietorakenteet;
  *
  * @author Tony
  */
-public class Mappi<T,E> {
+public class Mappi<T, E> {
 
     private Arvopari<Comparable, Comparable> juuri = null;
 
@@ -39,7 +39,11 @@ public class Mappi<T,E> {
                         kasiteltava = kasiteltava.getNextVasen();
                     }
 
+                } else if (isompiko == 0) {
+                    kasiteltava.setArvo(pari.getArvo());
+                    return;
                 } else {
+
                     if (kasiteltava.getNextOikea() == null) {
                         kasiteltava.setNextOikea(pari);
                         loytyiOikeaPaikka = true;
@@ -108,7 +112,7 @@ public class Mappi<T,E> {
     }
 
     public boolean remove(Comparable avain) {
-        if (juuri == null){
+        if (juuri == null) {
             return false;
         }
         Arvopari<Comparable, Comparable> kasiteltava = juuri;
@@ -156,12 +160,16 @@ public class Mappi<T,E> {
         kasiteltava.setAvain(null);
         kasiteltava.setArvo(null);
     }
-    
+
     /**
-     * Palauttaa solmun, ensimmäisenä prioriteettina on että haetaan seuraava solmu kunkin solmun vasemmalta puolelta. Jos
-     * solmun vasemmalla puolella ei ole mitään, niin hakee solmun oikealta puolelta. Jos käsiteltävällä solmulla ei ole
-     * oikealla eikä vasemmalla solmua, palauttaa return arvona itsensä.
-     * @return Arvopari-tyyppinen solmu jolla ei ole solmua vasemmalla eikä oikealla puolella.
+     * Palauttaa solmun, ensimmäisenä prioriteettina on että haetaan seuraava
+     * solmu kunkin solmun vasemmalta puolelta. Jos solmun vasemmalla puolella
+     * ei ole mitään, niin hakee solmun oikealta puolelta. Jos käsiteltävällä
+     * solmulla ei ole oikealla eikä vasemmalla solmua, palauttaa return arvona
+     * itsensä.
+     *
+     * @return Arvopari-tyyppinen solmu jolla ei ole solmua vasemmalla eikä
+     * oikealla puolella
      */
     public Arvopari palautaAlinSolmuMahdollisimmanVasemmalta() {
         Arvopari<Comparable, Comparable> kasiteltava = juuri;
@@ -176,56 +184,56 @@ public class Mappi<T,E> {
             } else {
                 return kasiteltava;
             }
-        }
+         }
         return null;
     }
-    
-    public Setti keySet(){
+
+    public Setti keySet() {
         Setti<Comparable> setti = new Setti<Comparable>();
         if (juuri == null) {
-            return null;
+            return setti;
         }
         Arvopari<Comparable, Comparable> kasiteltava = juuri;
-        
+
         setti = lisaaSolmujenAvaimetSettiin(kasiteltava, setti);
         return setti;
+    }
+
+    protected Setti<Comparable> lisaaSolmujenAvaimetSettiin(Arvopari solmu, Setti setti) {
+        if (solmu.getNextVasen() != null) {
+            lisaaSolmujenAvaimetSettiin(solmu.getNextVasen(), setti);
         }
-    
-    protected Setti<Comparable> lisaaSolmujenAvaimetSettiin(Arvopari solmu, Setti setti){
-        if (solmu.getNextVasen() != null){
-        lisaaSolmujenAvaimetSettiin(solmu.getNextVasen(), setti);
-        }
-        if (solmu.getNextOikea() != null){
-        lisaaSolmujenAvaimetSettiin(solmu.getNextOikea(), setti);
+        if (solmu.getNextOikea() != null) {
+            lisaaSolmujenAvaimetSettiin(solmu.getNextOikea(), setti);
         }
         setti.add(solmu.getAvain());
         return setti;
     }
-    
-    public Setti entrySet(){
+
+    public Setti entrySet() {
         Setti<Comparable> setti = new Setti<Comparable>();
         if (juuri == null) {
-            return null;
+            return setti;
         }
         Arvopari<Comparable, Comparable> kasiteltava = juuri;
-        
+
         setti = lisaaSolmujenArvotSettiin(kasiteltava, setti);
         return setti;
+    }
+
+    protected Setti<Comparable> lisaaSolmujenArvotSettiin(Arvopari solmu, Setti setti) {
+        if (solmu.getNextVasen() != null) {
+            lisaaSolmujenArvotSettiin(solmu.getNextVasen(), setti);
         }
-    
-    protected Setti<Comparable> lisaaSolmujenArvotSettiin(Arvopari solmu, Setti setti){
-        if (solmu.getNextVasen() != null){
-        lisaaSolmujenArvotSettiin(solmu.getNextVasen(), setti);
-        }
-        if (solmu.getNextOikea() != null){
-        lisaaSolmujenArvotSettiin(solmu.getNextOikea(), setti);
+        if (solmu.getNextOikea() != null) {
+            lisaaSolmujenArvotSettiin(solmu.getNextOikea(), setti);
         }
         setti.add(solmu.getArvo());
         return setti;
     }
-    
-    public boolean isEmpty(){
-        if (juuri == null){
+
+    public boolean isEmpty() {
+        if (juuri == null) {
             return true;
         }
         return false;

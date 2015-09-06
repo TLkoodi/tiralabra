@@ -2,7 +2,9 @@ package koodinpurkaja;
 
 import koodinpurkaja.Tietorakenteet.Frekvenssiolio;
 import java.util.TreeMap;
+import koodinpurkaja.Tietorakenteet.Mappi;
 import koodinpurkaja.Tietorakenteet.PriorisoituJono;
+import koodinpurkaja.Tietorakenteet.Setti;
 
 /**
  *
@@ -18,13 +20,24 @@ public class Analysoija {
      */
  public PriorisoituJono<Frekvenssiolio> analysoiFrekvenssi(String teksti){
      PriorisoituJono<Frekvenssiolio> frekvenssit = new PriorisoituJono<Frekvenssiolio>();
-        TreeMap<Character, Frekvenssiolio> kirjaimet = new TreeMap<Character, Frekvenssiolio>();
+       // TreeMap<Character, Frekvenssiolio> kirjaimet = new TreeMap<Character, Frekvenssiolio>();
+     Mappi<Character, Frekvenssiolio> kirjaimet = new Mappi<Character, Frekvenssiolio>();
         kirjaimet = laskeKirjaimet(teksti);
-        for (char c : kirjaimet.keySet()){
-            Frekvenssiolio olio = kirjaimet.get(c);
+//        for (char c : kirjaimet.keySet()){
+//            Frekvenssiolio olio = kirjaimet.get(c);
+//            frekvenssit.add(olio);
+//        }
+        Setti keySetti = kirjaimet.keySet();
+        boolean onkoNull = false;
+        while (!onkoNull){
+            Character c = (Character)keySetti.poll();
+            if (c != null){
+            Frekvenssiolio olio = (Frekvenssiolio)kirjaimet.get(c);
             frekvenssit.add(olio);
+            } else {
+                onkoNull = true;
+            }
         }
-        
         return frekvenssit;
     }
     
@@ -38,8 +51,9 @@ public class Analysoija {
      * @return 
     */
     
-    public TreeMap<Character, Frekvenssiolio> laskeKirjaimet(String teksti){
-        TreeMap<Character, Frekvenssiolio> kirjaimet = new TreeMap<Character, Frekvenssiolio>();
+    public Mappi<Character, Frekvenssiolio> laskeKirjaimet(String teksti){
+        //TreeMap<Character, Frekvenssiolio> kirjaimet = new TreeMap<Character, Frekvenssiolio>();
+        Mappi<Character, Frekvenssiolio> kirjaimet = new Mappi<Character, Frekvenssiolio>();
         
         for (int i = 0; teksti.length() > i; i++) {
         char[] merkkitaulukko = null;
@@ -50,7 +64,9 @@ public class Analysoija {
                 kirjaimet.put(merkkitaulukko[i], olio);
             
             } else {
-               kirjaimet.get(merkkitaulukko[i]).kasvata();
+               Frekvenssiolio maara = (Frekvenssiolio) kirjaimet.get(merkkitaulukko[i]);
+               maara.kasvata();
+               kirjaimet.put(merkkitaulukko[i], maara);
             }
             
         }

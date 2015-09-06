@@ -60,10 +60,11 @@ public class KoodinKaantajaTest {
         System.out.println("kaanna");
         KoodinKaantaja instance = new KoodinKaantaja();
         instance.setKaannettava("lol");
-        String kaannos = "";
+        String kaannos;
         instance.kaanna();
         instance.vaihdaKirjainManuaalisesti("t", "l");
         instance.kaanna();
+        instance.pidaKirjain("l");
         instance.vaihdaKirjainManuaalisesti("e", "a");
         kaannos = instance.kaanna();
         assertEquals("ala", kaannos);
@@ -78,7 +79,7 @@ public class KoodinKaantajaTest {
         assertEquals(null, kaannos);
         
     }
-
+//
     /**
      * Test of setKaannettava method, of class KoodinKaantaja.
      */
@@ -131,7 +132,7 @@ public class KoodinKaantajaTest {
         instance.vaihdaKirjainManuaalisesti(vaihdettavaKirjainStringi, korvaavaKirjainStringi);
         assertEquals(expResult, instance.kaanna());
     }
-    
+//    
     @Test
     public void testiVaihdaKirjainTuleekoBooleanOikein() {
         System.out.println("vaihdaKirjain");
@@ -142,7 +143,7 @@ public class KoodinKaantajaTest {
         boolean kuittaus = instance.vaihdaKirjainManuaalisesti(vaihdettavaKirjainStringi, korvaavaKirjainStringi);
         assertEquals(true, kuittaus);
     }
-    
+//    
     @Test
     public void testiVaihdaKirjainTuleekoBooleanOikeinFalsena() {
         System.out.println("vaihdaKirjain");
@@ -156,6 +157,7 @@ public class KoodinKaantajaTest {
     
     @Test
     public void testVaihdaKirjainNiinEttaKorvaajaKirjaimellaEiOleValmiiksiEsiintyvyyttaTekstissa() {
+        System.out.println("VaihdaKirjainNiinEttaKorvaajaKirjaimellaEiOleValmiiksiEsiintyvyyttaTekstissa");
         String vaihdettavaKirjainStringi = "m";
         String korvaavaKirjainStringi = "e";
         KoodinKaantaja instance = new KoodinKaantaja();
@@ -165,7 +167,7 @@ public class KoodinKaantajaTest {
         System.out.println(instance.kaanna());
         assertEquals(!expResult.equals(instance.kaanna()), true);
     }
-
+//
     /**
      * Test of stringiKirjaimeksi method, of class KoodinKaantaja.
      */
@@ -301,5 +303,5 @@ public class KoodinKaantajaTest {
         Kirjaintenvaihtaja result = instance.korvaaTekstinKirjaimet(yleisyystiedot, kirjaintenvaihtaja, tekstinKirjaintiedot);
         assertEquals("dabbcdcbbc", result.luePurettuKoodi());
     }
-    
+//    
 }

@@ -46,9 +46,16 @@ public class Setti<T>{
     
     public Comparable poll(){
         Arvopari arvopari = mappi.palautaAlinSolmuMahdollisimmanVasemmalta();
+        try{
+        if (arvopari.isEmpty()){
+            return null;
+        }
         Comparable tieto = arvopari.getAvain();
         mappi.remove(arvopari.getAvain());
         return tieto;
+        } catch (Exception e){
+            return null;
+        }
     }
 
 }

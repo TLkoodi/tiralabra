@@ -32,7 +32,10 @@ public class Arvopari<T,E>{
      */
     
     public Comparable getArvo(){
+        if (arvo != null){
         return this.arvo;
+        }
+        return null;
     }
     
     /**
@@ -41,7 +44,10 @@ public class Arvopari<T,E>{
      */
     
     public Comparable getAvain(){
+        if (avain != null){
         return this.avain;
+        }
+        return null;
     }
     
     /**

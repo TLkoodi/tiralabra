@@ -3,7 +3,7 @@ package koodinpurkaja;
 import koodinpurkaja.Tietorakenteet.LinkitettyLista;
 
 /**
- *
+ * Tämä luokka toimii apuna hakiessa kielen kirjainten yleisyysjärjestystä. Luokkaa voi laajentaa vapaasti haluamilleen kielille.
  * @author Tony
  */
 public class Frekvenssitiedot {
