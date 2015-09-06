@@ -108,8 +108,10 @@ public class Mappi<T,E> {
     }
 
     public boolean remove(Comparable avain) {
+        if (juuri == null){
+            return false;
+        }
         Arvopari<Comparable, Comparable> kasiteltava = juuri;
-
         if (juuri.getAvain() == avain) {
             juuri = juuri.getNextOikea();
             poistaSolmuJaLisaaSenSolmutUuudelleenMappiin(kasiteltava);
@@ -154,7 +156,13 @@ public class Mappi<T,E> {
         kasiteltava.setAvain(null);
         kasiteltava.setArvo(null);
     }
-
+    
+    /**
+     * Palauttaa solmun, ensimmäisenä prioriteettina on että haetaan seuraava solmu kunkin solmun vasemmalta puolelta. Jos
+     * solmun vasemmalla puolella ei ole mitään, niin hakee solmun oikealta puolelta. Jos käsiteltävällä solmulla ei ole
+     * oikealla eikä vasemmalla solmua, palauttaa return arvona itsensä.
+     * @return Arvopari-tyyppinen solmu jolla ei ole solmua vasemmalla eikä oikealla puolella.
+     */
     public Arvopari palautaAlinSolmuMahdollisimmanVasemmalta() {
         Arvopari<Comparable, Comparable> kasiteltava = juuri;
         if (juuri == null) {

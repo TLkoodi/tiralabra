@@ -43,5 +43,12 @@ public class Setti<T>{
         return mappi.containsKey(haettava);
         
     }
+    
+    public Comparable poll(){
+        Arvopari arvopari = mappi.palautaAlinSolmuMahdollisimmanVasemmalta();
+        Comparable tieto = arvopari.getAvain();
+        mappi.remove(arvopari.getAvain());
+        return tieto;
+    }
 
 }
